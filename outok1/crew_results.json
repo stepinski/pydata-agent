@@ -1,0 +1,52 @@
+[
+  {
+    "pdf": "/Users/unman/ws/pydata-agent/data/note_08.pdf",
+    "status": "error",
+    "error": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=HF://mlc-ai/Phi-3.5-vision-instruct-q0f16-MLC\n Pass model as E.g. For 'Huggingface' inference endpoints pass in `completion(model='huggingface/starcoder',..)` Learn more: https://docs.litellm.ai/docs/providers"
+  },
+  {
+    "pdf": "/Users/unman/ws/pydata-agent/data/note_09.pdf",
+    "status": "error",
+    "error": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=HF://mlc-ai/Phi-3.5-vision-instruct-q0f16-MLC\n Pass model as E.g. For 'Huggingface' inference endpoints pass in `completion(model='huggingface/starcoder',..)` Learn more: https://docs.litellm.ai/docs/providers"
+  },
+  {
+    "pdf": "/Users/unman/ws/pydata-agent/data/note_O2.pdf",
+    "status": "error",
+    "error": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=HF://mlc-ai/Phi-3.5-vision-instruct-q0f16-MLC\n Pass model as E.g. For 'Huggingface' inference endpoints pass in `completion(model='huggingface/starcoder',..)` Learn more: https://docs.litellm.ai/docs/providers"
+  },
+  {
+    "pdf": "/Users/unman/ws/pydata-agent/data/note_10.pdf",
+    "status": "error",
+    "error": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=HF://mlc-ai/Phi-3.5-vision-instruct-q0f16-MLC\n Pass model as E.g. For 'Huggingface' inference endpoints pass in `completion(model='huggingface/starcoder',..)` Learn more: https://docs.litellm.ai/docs/providers"
+  },
+  {
+    "pdf": "/Users/unman/ws/pydata-agent/data/note_04.pdf",
+    "status": "error",
+    "error": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=HF://mlc-ai/Phi-3.5-vision-instruct-q0f16-MLC\n Pass model as E.g. For 'Huggingface' inference endpoints pass in `completion(model='huggingface/starcoder',..)` Learn more: https://docs.litellm.ai/docs/providers"
+  },
+  {
+    "pdf": "/Users/unman/ws/pydata-agent/data/note_05.pdf",
+    "status": "error",
+    "error": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=HF://mlc-ai/Phi-3.5-vision-instruct-q0f16-MLC\n Pass model as E.g. For 'Huggingface' inference endpoints pass in `completion(model='huggingface/starcoder',..)` Learn more: https://docs.litellm.ai/docs/providers"
+  },
+  {
+    "pdf": "/Users/unman/ws/pydata-agent/data/note_07.pdf",
+    "status": "error",
+    "error": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=HF://mlc-ai/Phi-3.5-vision-instruct-q0f16-MLC\n Pass model as E.g. For 'Huggingface' inference endpoints pass in `completion(model='huggingface/starcoder',..)` Learn more: https://docs.litellm.ai/docs/providers"
+  },
+  {
+    "pdf": "/Users/unman/ws/pydata-agent/data/note_06.pdf",
+    "status": "error",
+    "error": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=HF://mlc-ai/Phi-3.5-vision-instruct-q0f16-MLC\n Pass model as E.g. For 'Huggingface' inference endpoints pass in `completion(model='huggingface/starcoder',..)` Learn more: https://docs.litellm.ai/docs/providers"
+  },
+  {
+    "pdf": "/Users/unman/ws/pydata-agent/data/note_03.pdf",
+    "status": "error",
+    "error": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=HF://mlc-ai/Phi-3.5-vision-instruct-q0f16-MLC\n Pass model as E.g. For 'Huggingface' inference endpoints pass in `completion(model='huggingface/starcoder',..)` Learn more: https://docs.litellm.ai/docs/providers"
+  },
+  {
+    "pdf": "/Users/unman/ws/pydata-agent/data/note_01.pdf",
+    "status": "error",
+    "error": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=HF://mlc-ai/Phi-3.5-vision-instruct-q0f16-MLC\n Pass model as E.g. For 'Huggingface' inference endpoints pass in `completion(model='huggingface/starcoder',..)` Learn more: https://docs.litellm.ai/docs/providers"
+  }
+]

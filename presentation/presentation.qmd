@@ -1,0 +1,302 @@
+---
+title: "From Handwritten Notes to Smart Knowledge"
+subtitle: "Build Local AI Agents with Python"
+author: "Piotr Stepinski"
+format:
+  revealjs:
+    theme: night
+    css: styles.css
+    logo: "https://images.squarespace-cdn.com/content/v1/684af041a9d73e06a56323f5/1749741662420-4W1CSBAHW1QW3MEG8K15/LogoStacked.png?format=1500w"
+    transition: fade
+    background-transition: fade
+    height: 900
+    width: 1600
+    slide-number: c/t
+    auto-animate: true
+    code-line-numbers: false
+    highlight-style: dracula
+    footer: "PyData Global 2025 | Local AI Agents"
+---
+
+## About Me
+
+- Leading Data Science and Dev teams for **Infinittii AI**
+- Specializing in Industrial IoT (Water Management Platforms)
+- **Goal Today:** Show the **Agentic approach** to knowledge management.
+
+::: {.notes}
+Good afternoon, everyone. Welcome to PyData Global.
+
+To start, my name is **Piotr Stepinski**. I lead Data Science and Development teams at **Infinittii AI**, specializing in industrial IoT platforms for water management.
+
+The focus of my work—and my goal today—is to show you a practical, real-world demonstration of the **Agentic approach** to knowledge management.
+:::
+
+---
+
+## The Fragmentation Thesis {background-color="#1a1b26"}
+
+We live in a world of documents.
+
+* 📓 **Meeting Notes** (Scribbled fast)
+* 📖 **Research Papers** (Complex jargon)
+* 💡 **Confluence Pages** (Scattered ideas)
+
+**The Reality:** We have all the data, but the knowledge is trapped.
+
+<center>
+![](puzzles_transparent.png){height=300px}
+</center>
+
+::: {.notes}
+We are all facing the same problem: **Knowledge Fragmentation**.
+
+We live in a world of files and disparate documents: meeting notes, research papers, Confluence pages. We have all the data, but the knowledge is trapped.
+
+Just think of Tom, a new engineer on my team, asking, "Where can I find the definitive guide on RAG?" My answer is always the same: "It’s split across five docs, two slide decks, something on GitHub, and a Confluence page."
+
+We have all the **pieces, but no picture on the box.**
+:::
+
+---
+
+## Why Not Just Use Cloud AI?
+
+Sure, GPT-4o is great. But...
+
+1.  **Privacy:** Do you want sensitive documents on a public API?
+2.  **Cost:** Processing 1000s of pages gets expensive.
+3.  **Ownership:** We must own our data and processing pipeline.
+
+**Goal:** Build a 100% Local Pipeline for **RAG 2.0 Knowledge Synthesis**.
+
+::: {.notes}
+So, why build this system locally? There are several critical reasons:
+
+1.  **Privacy:** You have sensitive documents you cannot share across a public API. You want to keep this privacy for yourself.
+2.  **Cost:** Processing high volumes of data quickly becomes uneconomical.
+3.  **Ownership:** You want to process your data without relying on third parties. If the internet goes down, you still need to process your data.
+
+Our goal is to build a 100% local pipeline for **Knowledge Synthesis**.
+:::
+
+---
+
+## The Architecture: Agentic Pipeline {background-color="#1a1b26"}
+
+We replace the "Generic VLM" with a **Specialized Crew**.
+
+---
+
+## System Design
+
+```{mermaid}
+%%| fig-width: 14
+flowchart LR
+    In(Input PDF) --> Vision[<b>Vision Specialist</b><br/>TrOCR + Craft]
+    
+    subgraph Brain ["🧠 The Brain (CrewAI)"]
+        direction TB
+        Vision --> RawText(Raw Text)
+        RawText --> Classify[<b>Librarian</b><br/>Topic Classification]
+        RawText --> Correct[<b>Senior Editor</b><br/>Contextual Cleanup]
+    end
+    
+    Correct --> JSON{Structured JSON}
+    Classify --> JSON
+    
+    JSON --> Graph[<b>Graph Builder</b><br/>NetworkX + Semantics]
+    Graph --> Viz((<b>Knowledge<br/>Graph</b>))
+
+    style In fill:#fff,stroke:#333,stroke-width:2px,color:#000
+    style Vision fill:#ff9e64,color:#000,stroke:#333
+    style Brain fill:#24283b,stroke:#7aa2f7,stroke-width:2px,stroke-dasharray: 5 5,color:#fff
+    style Classify fill:#7aa2f7,color:#000
+    style Correct fill:#7aa2f7,color:#000
+    style Graph fill:#9ece6a,color:#000
+    style Viz fill:#bb9af7,color:#000,stroke:#fff,stroke-width:2px
+```
+
+**Why this split?**
+TrOCR is the "Eye" (reads shapes). The LLM is the "Brain" (understands context). Separating them prevents the hallucination common in generic multimodal models.
+
+::: {.notes}
+This requires a **modular, agentic design**. We use **CrewAI** to orchestrate specialized agents, preventing one weak input from sabotaging the entire system.
+
+The workflow is split:
+* **Vision Specialist** for the raw text.
+* **Librarian** and **Senior Editor** for context and cleaning.
+:::
+
+---
+
+## Phase 1: The "Eye" (Preprocessing) {background-color="#1a1b26"}
+
+Standard OCR fails on thin pen strokes. We use a **Split Pipeline** approach.
+
+---
+
+### The Split Pipeline Trick
+
+We use **two versions** of the image: one for finding text, one for reading it.
+
+```python
+def _run(self, file_path):
+    # 1. Image A: Clean & Sharp (For Detection)
+    # Prevents "blobs" and ghost boxes
+    img_detect = enhance_contrast(original_img)
+    regions = craft_detector.detect_text(img_detect)
+
+    # 2. Image B: Dilated & Thick (For Reading)
+    # Makes faint ballpoint pen look like a bold marker
+    img_read = preprocess_for_trocr(original_img) 
+    # (Contrast ++, Dilation 2x2)
+
+    # 3. Crop from Image B using coordinates from Image A
+    for box in regions:
+        crop = img_read.crop(box)
+        text = trocr_model(crop)
+```
+
+::: {.notes}
+We observed that standard OCR fails on thin pen strokes. So, we use a split pipeline approach.
+
+The key is using OpenCV's **dilation** operation to "fatten" the ink strokes, transforming fragmented handwriting into a clear marker pen for the OCR model.
+
+We use two versions of the image:
+1.  **A sharp version** for finding text boxes, preventing "ghost boxes."
+2.  **A thickened, high-contrast version** for reading the text, making faint ballpoint pen look like a bold marker.
+
+This guarantees higher quality input for the LLMs.
+:::
+
+---
+
+## Phase 2: Semantic Synthesis {background-color="#1a1b26"}
+
+Let's look at two seemingly disconnected files.
+
+::: {.notes}
+With clean text, the LLMs apply contextual reasoning. The **Librarian** tags the domain. The **Senior Editor** then uses that context to correct technical jargon errors, ensuring clean JSON output enforced by Pydantic—the absolute fuel for our graph.
+
+Now, let's look at two seemingly disconnected files.
+:::
+
+---
+
+### The Input Data
+
+::: {.columns}
+
+::: {.column width="50%"}
+#### Note 10: "Use Case - RAG"
+![](note_10.png){height=450px style="border: 2px solid #7aa2f7; border-radius: 8px;"}
+<br>
+*Text: "Phase 2: Build **RAG pipeline**", "Solution: RAG System"*
+:::
+
+::: {.column width="50%"}
+#### Note 03: "LangChain Setup"
+![](note_03.png){height=450px style="border: 2px solid #7aa2f7; border-radius: 8px;"}
+<br>
+*Text: "Chain: Retriever -> LLM", "Ready to integrate with **pipeline**"*
+:::
+
+:::
+
+::: {.notes}
+* **Note 10:** Documents a use case for building a "RAG pipeline."
+* **Note 03:** Details a "LangChain Setup," mentioning a chain of "Retriever -> LLM" ready to integrate with a "pipeline."
+
+We want our system to retrieve connections between these automatically.
+:::
+
+---
+
+### The Connection Revealed
+
+The **Graph Builder** linked the **Strategic Goal** (Note 10) with the **Technical Solution** (Note 03).
+
+<center>
+![](relations.png){style="max-height: 400px; border: 4px solid #9ece6a; border-radius: 12px; box-shadow: 0 0 20px rgba(158, 206, 106, 0.4);"}
+</center>
+
+> **Why they connected:**
+>
+> * ✅ **"Pipeline"** (Exact Keyword Match)
+> * ✅ **"RAG System" ≈ "Retriever + LLM"** (Semantic Architecture Match)
+
+::: {.notes}
+These notes are connected in two ways.
+
+1.  **Exact Keyword Match** on "pipeline."
+2.  **Semantic Architecture Match**: the concept of a "RAG System" in Note 10 is semantically equivalent to "Retriever + LLM" in Note 03.
+
+This proves the system synthesizes knowledge.
+:::
+
+---
+
+## 🔮 Live Demo {background-color="#1a1b26"}
+
+**Scenario:**
+Processing the full batch.
+Watch the **Graph Builder** connect the dots live.
+
+*(Switching to Terminal...)*
+
+::: {.notes}
+Let's see it in action. **[Transition to Terminal/Code]**
+
+(Walkthrough: Explain CrewAI initialization, Tasks, and the "ChromaDB correction" example).
+
+**[Transition to HTML Graph]**
+
+Let's visualize this. This is the full graph. I'll search for **Node 03**.
+
+We can see that Node 03 and Node 10 are directly related based on keywords but are also semantically related to other nodes. Interestingly, there is a **semantic relationship between Node 02 and Node 05**, even without an obvious keyword match. Node 05 is about a database comparison, proving the system finds non-obvious, high-value connections.
+:::
+
+---
+
+## Summary: The Local Stack {background-color="#1a1b26"}
+
+| Component | Technology | Why? |
+|-----------|------------|------|
+| **Vision** | TrOCR + Craft | High-fidelity data acquisition |
+| **Logic** | CrewAI + Qwen | Contextual correction & synthesis |
+| **Graph** | NetworkX | **Relationship Discovery** |
+| **Viz** | PyVis | Interactive exploration |
+
+**Outcome:** A private, zero-cost pipeline for RAG 2.0 knowledge synthesis.
+
+::: {.notes}
+To summarize, we didn't just build a text extractor. We demonstrated that you **don't have to compromise on quality to get privacy.**
+
+By using a modular, agentic architecture, we allowed smaller, local models to punch above their weight class—fixing errors and finding connections that would usually require massive cloud compute.
+
+For sensitive, private data, this proves that a **local, agentic pipeline** is not just a backup plan—it is the **responsible choice** for knowledge management.
+:::
+
+---
+
+## Thank You!
+
+::: {style="text-align: center; margin-top: 50px;"}
+### Code & Slides
+
+![](https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/stepinski/pydata-agent){style="border: 4px solid #7aa2f7; border-radius: 10px; margin-bottom: 20px;"}
+
+[github.com/stepinski/pydata-agent](https://github.com/stepinski/pydata-agent)
+
+<br>
+
+**Piotr Stepinski**
+*@stepinski*
+:::
+
+::: {.notes}
+The future isn't just about retrieving documents; it’s about **retrieving relationships.**
+
+Thank you.
+:::

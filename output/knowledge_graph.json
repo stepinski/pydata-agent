@@ -1,0 +1,954 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_08.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Annual checkup"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "blood work"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "blood pressure"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "sleep quality"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "vaccination status"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "insurance documents"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "post-results consultation"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_09.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Cognitive Biases and Decision-Making in Technology and Psychology"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "anchoring effect"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "heuristics"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "availability bias"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "framing effect"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "authority bias"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "push model"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "reilly\u2019s model"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_O2.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Hybrid Search Strategy Optimization"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "semantic search"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "keyword matching"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "vector embeddings"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "bmi"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "rag pipelines"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "loi"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "potency"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "hallucination"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_10.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Documentation System Optimization"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "documentation"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "critical info"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "r46 pipeline"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "work sources"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "search optimization"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "pennsylvania"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "roll"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_04.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Document Optimization and Compression Techniques"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "document optimization"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "compression techniques"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "benchmark chunk effectiveness"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "dynamic climbing"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "treasure touch presentation"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "export process"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_05.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Comparison of Local and Cloud Database Services"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "chromedb"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "pinecone"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "local database"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "cloud database"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "open-source"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "scalable"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "multi-tenant"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "cost per vector"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "small datasets"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "data infrastructure"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "budget-conscious"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "no multi-user support"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_07.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Summer 2016 Trip Ideas"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "greece"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "spain"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "fortugena"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "history"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "museums"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "beaches"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "wine"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "architecture"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "cultural experiences"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "food"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_06.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Grocery Shopping"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "milk"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "coffee (arabica beans)"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "chicken (breast)"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "broccoli"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "tomatoes"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "pesto"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "dove oil"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "cheese (cheddar)"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_03.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Model Setup and Optimization for Office LLDs"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "lampthorn"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "office llds"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "model setup"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "chain creation"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "performance enhancements"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "batch processing"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "fb model contest"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "memory optimization"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "compatibility"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "testing"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_01.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Vector Database Selection and Implementation"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "vector db"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "chromadb"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "embedding"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "performance testing"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "local solution"
+    }
+  ],
+  "links": [
+    {
+      "relation": "is_about",
+      "source": "note_08.pdf",
+      "target": "Annual checkup"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_08.pdf",
+      "target": "blood work"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_08.pdf",
+      "target": "blood pressure"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_08.pdf",
+      "target": "sleep quality"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_08.pdf",
+      "target": "vaccination status"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_08.pdf",
+      "target": "insurance documents"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_08.pdf",
+      "target": "post-results consultation"
+    },
+    {
+      "relation": "is_about",
+      "source": "note_09.pdf",
+      "target": "Cognitive Biases and Decision-Making in Technology and Psychology"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_09.pdf",
+      "target": "anchoring effect"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_09.pdf",
+      "target": "heuristics"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_09.pdf",
+      "target": "availability bias"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_09.pdf",
+      "target": "framing effect"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_09.pdf",
+      "target": "authority bias"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_09.pdf",
+      "target": "push model"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_09.pdf",
+      "target": "reilly\u2019s model"
+    },
+    {
+      "relation": "is_about",
+      "source": "note_O2.pdf",
+      "target": "Hybrid Search Strategy Optimization"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_O2.pdf",
+      "target": "semantic search"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_O2.pdf",
+      "target": "keyword matching"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_O2.pdf",
+      "target": "vector embeddings"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_O2.pdf",
+      "target": "bmi"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_O2.pdf",
+      "target": "rag pipelines"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_O2.pdf",
+      "target": "loi"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_O2.pdf",
+      "target": "potency"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_O2.pdf",
+      "target": "hallucination"
+    },
+    {
+      "relation": "is_about",
+      "source": "note_10.pdf",
+      "target": "Documentation System Optimization"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_10.pdf",
+      "target": "documentation"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_10.pdf",
+      "target": "critical info"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_10.pdf",
+      "target": "r46 pipeline"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_10.pdf",
+      "target": "work sources"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_10.pdf",
+      "target": "search optimization"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_10.pdf",
+      "target": "pennsylvania"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_10.pdf",
+      "target": "roll"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "r46 pipeline",
+      "target": "note_05.pdf"
+    },
+    {
+      "relation": "is_about",
+      "source": "note_04.pdf",
+      "target": "Document Optimization and Compression Techniques"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_04.pdf",
+      "target": "document optimization"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_04.pdf",
+      "target": "compression techniques"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_04.pdf",
+      "target": "benchmark chunk effectiveness"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_04.pdf",
+      "target": "dynamic climbing"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_04.pdf",
+      "target": "treasure touch presentation"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_04.pdf",
+      "target": "export process"
+    },
+    {
+      "relation": "is_about",
+      "source": "note_05.pdf",
+      "target": "Comparison of Local and Cloud Database Services"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_05.pdf",
+      "target": "chromedb"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_05.pdf",
+      "target": "pinecone"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_05.pdf",
+      "target": "local database"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_05.pdf",
+      "target": "cloud database"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_05.pdf",
+      "target": "open-source"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_05.pdf",
+      "target": "scalable"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_05.pdf",
+      "target": "multi-tenant"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_05.pdf",
+      "target": "cost per vector"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_05.pdf",
+      "target": "small datasets"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_05.pdf",
+      "target": "data infrastructure"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_05.pdf",
+      "target": "budget-conscious"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_05.pdf",
+      "target": "no multi-user support"
+    },
+    {
+      "relation": "is_about",
+      "source": "note_07.pdf",
+      "target": "Summer 2016 Trip Ideas"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_07.pdf",
+      "target": "greece"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_07.pdf",
+      "target": "spain"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_07.pdf",
+      "target": "fortugena"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_07.pdf",
+      "target": "history"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_07.pdf",
+      "target": "museums"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_07.pdf",
+      "target": "beaches"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_07.pdf",
+      "target": "wine"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_07.pdf",
+      "target": "architecture"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_07.pdf",
+      "target": "cultural experiences"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_07.pdf",
+      "target": "food"
+    },
+    {
+      "relation": "is_about",
+      "source": "note_06.pdf",
+      "target": "Grocery Shopping"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_06.pdf",
+      "target": "milk"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_06.pdf",
+      "target": "coffee (arabica beans)"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_06.pdf",
+      "target": "chicken (breast)"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_06.pdf",
+      "target": "broccoli"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_06.pdf",
+      "target": "tomatoes"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_06.pdf",
+      "target": "pesto"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_06.pdf",
+      "target": "dove oil"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_06.pdf",
+      "target": "cheese (cheddar)"
+    },
+    {
+      "relation": "is_about",
+      "source": "note_03.pdf",
+      "target": "Model Setup and Optimization for Office LLDs"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_03.pdf",
+      "target": "lampthorn"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_03.pdf",
+      "target": "office llds"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_03.pdf",
+      "target": "model setup"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_03.pdf",
+      "target": "chain creation"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_03.pdf",
+      "target": "performance enhancements"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_03.pdf",
+      "target": "batch processing"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_03.pdf",
+      "target": "fb model contest"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_03.pdf",
+      "target": "memory optimization"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_03.pdf",
+      "target": "compatibility"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_03.pdf",
+      "target": "testing"
+    },
+    {
+      "relation": "is_about",
+      "source": "note_01.pdf",
+      "target": "Vector Database Selection and Implementation"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_01.pdf",
+      "target": "vector db"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_01.pdf",
+      "target": "chromadb"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_01.pdf",
+      "target": "embedding"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_01.pdf",
+      "target": "performance testing"
+    },
+    {
+      "relation": "has_keyword",
+      "source": "note_01.pdf",
+      "target": "local solution"
+    }
+  ]
+}

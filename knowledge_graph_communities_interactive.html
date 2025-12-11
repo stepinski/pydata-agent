@@ -1,0 +1,327 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 95vh;
+                 background-color: #1a1b26;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"custom_keywords": "pipeline, document retrieval, search optimization", "custom_topic": "Document Retrieval Optimization", "font": {"color": "white"}, "group": "Comm_0", "id": "note_10.pdf", "label": "note_10.pdf", "shape": "dot", "size": 25}, {"custom_keywords": "pipeline, document retrieval, search optimization", "custom_topic": "Document Retrieval Optimization", "font": {"color": "white"}, "group": "Comm_0", "id": "note_03.pdf", "label": "note_03.pdf", "shape": "dot", "size": 25}, {"custom_keywords": "vector db, bm25, rag pipeline", "custom_topic": "Hybrid Search Strategy", "font": {"color": "white"}, "group": "Comm_1", "id": "note_O2.pdf", "label": "note_O2.pdf", "shape": "dot", "size": 25}, {"custom_keywords": "vector db, bm25, rag pipeline", "custom_topic": "Hybrid Search Strategy", "font": {"color": "white"}, "group": "Comm_1", "id": "note_01.pdf", "label": "note_01.pdf", "shape": "dot", "size": 25}, {"custom_keywords": "chromedb, pinecone, api", "custom_topic": "Database Services Comparison", "font": {"color": "white"}, "group": "Comm_2", "id": "note_05.pdf", "label": "note_05.pdf", "shape": "dot", "size": 25}, {"custom_keywords": "budget, food staples, pantry essentials", "custom_topic": "Grocery Shopping", "font": {"color": "white"}, "group": "Comm_3", "id": "note_06.pdf", "label": "note_06.pdf", "shape": "dot", "size": 25}, {"custom_keywords": "budget, food staples, pantry essentials", "custom_topic": "Grocery Shopping", "font": {"color": "white"}, "group": "Comm_3", "id": "note_08.pdf", "label": "note_08.pdf", "shape": "dot", "size": 25}, {"custom_keywords": "system1, system2, anchoring effect", "custom_topic": "Cognitive Biases and Technology", "font": {"color": "white"}, "group": "Comm_4", "id": "note_09.pdf", "label": "note_09.pdf", "shape": "dot", "size": 25}, {"custom_keywords": "greece, spain, history", "custom_topic": "Travel Planning", "font": {"color": "white"}, "group": "Comm_5", "id": "note_07.pdf", "label": "note_07.pdf", "shape": "dot", "size": 25}, {"custom_keywords": "summaries, compression, chunk", "custom_topic": "Document Compression and Optimization", "font": {"color": "white"}, "group": "Comm_6", "id": "note_04.pdf", "label": "note_04.pdf", "shape": "dot", "size": 25}]);
+                  edges = new vis.DataSet([{"color": "#F1C40F", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_08.pdf", "label": "Shared: budget", "title": "Shared: budget", "to": "note_06.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_08.pdf", "label": "Sim: 0.65", "title": "Sim: 0.65", "to": "note_09.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_08.pdf", "label": "Sim: 0.71", "title": "Sim: 0.71", "to": "note_O2.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_08.pdf", "label": "Sim: 0.72", "title": "Sim: 0.72", "to": "note_10.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_08.pdf", "label": "Sim: 0.75", "title": "Sim: 0.75", "to": "note_04.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_08.pdf", "label": "Sim: 0.74", "title": "Sim: 0.74", "to": "note_05.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_08.pdf", "label": "Sim: 0.69", "title": "Sim: 0.69", "to": "note_07.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_08.pdf", "label": "Sim: 0.73", "title": "Sim: 0.73", "to": "note_03.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_08.pdf", "label": "Sim: 0.71", "title": "Sim: 0.71", "to": "note_01.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_09.pdf", "label": "Sim: 0.63", "title": "Sim: 0.63", "to": "note_O2.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_09.pdf", "label": "Sim: 0.65", "title": "Sim: 0.65", "to": "note_10.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_09.pdf", "label": "Sim: 0.66", "title": "Sim: 0.66", "to": "note_04.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_09.pdf", "label": "Sim: 0.66", "title": "Sim: 0.66", "to": "note_05.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_09.pdf", "label": "Sim: 0.63", "title": "Sim: 0.63", "to": "note_07.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_09.pdf", "label": "Sim: 0.64", "title": "Sim: 0.64", "to": "note_06.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_09.pdf", "label": "Sim: 0.67", "title": "Sim: 0.67", "to": "note_03.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_09.pdf", "label": "Sim: 0.65", "title": "Sim: 0.65", "to": "note_01.pdf", "width": 2}, {"color": "#F1C40F", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_O2.pdf", "label": "Shared: vector db", "title": "Shared: vector db", "to": "note_01.pdf", "width": 2}, {"color": "#9B59B6", "dashes": true, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_O2.pdf", "label": "Semantic: pipeline...", "title": "Semantic: pipeline...", "to": "note_10.pdf", "width": 2}, {"color": "#9B59B6", "dashes": true, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_O2.pdf", "label": "Semantic: vector...", "title": "Semantic: vector...", "to": "note_05.pdf", "width": 2}, {"color": "#9B59B6", "dashes": true, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_O2.pdf", "label": "Semantic: pipeline...", "title": "Semantic: pipeline...", "to": "note_03.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_O2.pdf", "label": "Sim: 0.77", "title": "Sim: 0.77", "to": "note_04.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_O2.pdf", "label": "Sim: 0.69", "title": "Sim: 0.69", "to": "note_07.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_O2.pdf", "label": "Sim: 0.73", "title": "Sim: 0.73", "to": "note_06.pdf", "width": 2}, {"color": "#F1C40F", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_10.pdf", "label": "Shared: pipeline", "title": "Shared: pipeline", "to": "note_03.pdf", "width": 2}, {"color": "#9B59B6", "dashes": true, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_10.pdf", "label": "Semantic: optimization...", "title": "Semantic: optimization...", "to": "note_04.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_10.pdf", "label": "Sim: 0.78", "title": "Sim: 0.78", "to": "note_05.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_10.pdf", "label": "Sim: 0.69", "title": "Sim: 0.69", "to": "note_07.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_10.pdf", "label": "Sim: 0.72", "title": "Sim: 0.72", "to": "note_06.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_10.pdf", "label": "Sim: 0.77", "title": "Sim: 0.77", "to": "note_01.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_04.pdf", "label": "Sim: 0.78", "title": "Sim: 0.78", "to": "note_05.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_04.pdf", "label": "Sim: 0.71", "title": "Sim: 0.71", "to": "note_07.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_04.pdf", "label": "Sim: 0.71", "title": "Sim: 0.71", "to": "note_06.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_04.pdf", "label": "Sim: 0.79", "title": "Sim: 0.79", "to": "note_03.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_04.pdf", "label": "Sim: 0.79", "title": "Sim: 0.79", "to": "note_01.pdf", "width": 2}, {"color": "#9B59B6", "dashes": true, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_05.pdf", "label": "Semantic: vector db...", "title": "Semantic: vector db...", "to": "note_01.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_05.pdf", "label": "Sim: 0.71", "title": "Sim: 0.71", "to": "note_07.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_05.pdf", "label": "Sim: 0.71", "title": "Sim: 0.71", "to": "note_06.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_05.pdf", "label": "Sim: 0.78", "title": "Sim: 0.78", "to": "note_03.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_07.pdf", "label": "Sim: 0.78", "title": "Sim: 0.78", "to": "note_06.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_07.pdf", "label": "Sim: 0.70", "title": "Sim: 0.70", "to": "note_03.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_07.pdf", "label": "Sim: 0.68", "title": "Sim: 0.68", "to": "note_01.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_06.pdf", "label": "Sim: 0.71", "title": "Sim: 0.71", "to": "note_03.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_06.pdf", "label": "Sim: 0.66", "title": "Sim: 0.66", "to": "note_01.pdf", "width": 2}, {"color": "#3498DB", "dashes": false, "font": {"align": "middle", "color": "#aaaaaa", "size": 10, "strokeWidth": 0}, "from": "note_03.pdf", "label": "Sim: 0.77", "title": "Sim: 0.77", "to": "note_01.pdf", "width": 2}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"forceAtlas2Based": {"gravitationalConstant": -80, "springLength": 150, "springConstant": 0.04, "avoidOverlap": 0.5}, "minVelocity": 0.75, "solver": "forceAtlas2Based"}, "interaction": {"hover": true}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    
+<style>
+    /* THE CUSTOM POPUP CARD */
+    #custom-tooltip {
+        position: absolute;
+        display: none; /* Hidden by default */
+        z-index: 9999;
+        pointer-events: none; /* Let mouse pass through so it doesn't flicker */
+        
+        /* TOKYO NIGHT THEME */
+        background-color: #1f2335; 
+        border: 1px solid #7aa2f7;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        padding: 12px;
+        min-width: 200px;
+        max-width: 300px;
+        
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #c0caf5;
+    }
+    
+    #custom-tooltip strong {
+        display: block;
+        color: #fff;
+        font-size: 15px;
+        margin-bottom: 6px;
+        border-bottom: 1px solid #3b4261;
+        padding-bottom: 4px;
+    }
+    
+    .tt-label { color: #7dcfff; font-weight: 600; font-size: 12px; }
+    .tt-val { color: #fff; }
+    
+    /* RESET vis-tooltip styles (just in case they reappear) */
+    div.vis-tooltip {
+        visibility: hidden !important;
+        display: none !important;
+    }
+
+    /* 1. RESET the default Vis.js tooltip container to be invisible/unobtrusive */
+    div.vis-tooltip {
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif !important;
+        z-index: 99999 !important;
+        overflow: visible !important;
+    }
+
+    /* 2. STYLE our custom inner card */
+    .vis-tooltip-body {
+        background-color: #1f2335; /* Tokyo Night Dark Blue */
+        border: 1px solid #7aa2f7; /* Bright Blue Border */
+        border-radius: 8px;
+        box-shadow: 0px 8px 15px rgba(0,0,0,0.5);
+        padding: 12px 16px;
+        min-width: 250px;
+        max-width: 320px;
+        color: #c0caf5; /* Soft White Text */
+    }
+
+    .tt-header {
+        font-size: 16px;
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 8px;
+        border-bottom: 1px solid #3b4261;
+        padding-bottom: 4px;
+        display: block;
+    }
+
+    .tt-row {
+        margin-bottom: 4px;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .tt-label {
+        color: #7dcfff; /* Cyan for labels */
+        font-weight: 600;
+        margin-right: 5px;
+    }
+
+    .tt-val {
+        color: #fff;
+    }
+    
+    .tt-val-dim {
+        color: #9aa5ce; /* Dimmed text for keywords */
+    }
+</style>
+
+<div id="custom-tooltip"></div>
+
+<script type="text/javascript">
+    var tooltipEl = document.getElementById('custom-tooltip');
+
+    // --- 1. HOVER EVENT (Show Card) ---
+    network.on("hoverNode", function (params) {
+        var nodeId = params.node;
+        var node = nodes.get(nodeId);
+        
+        if (node.custom_topic) {
+            tooltipEl.innerHTML = `
+                <strong>📄 ${node.label}</strong>
+                <div><span class="tt-label">🏷️ GROUP:</span> <span class="tt-val">${node.custom_topic}</span></div>
+                <div style="margin-top:2px;"><span class="tt-label">🔑 KEYS:</span> <span class="tt-val" style="color:#9aa5ce">${node.custom_keywords}</span></div>
+            `;
+            
+            var nodePos = network.getPositions([nodeId])[nodeId];
+            var screenPos = network.canvasToDOM(nodePos);
+            
+            tooltipEl.style.left = (screenPos.x + 20) + 'px';
+            tooltipEl.style.top = (screenPos.y - 20) + 'px';
+            tooltipEl.style.display = 'block';
+        }
+    });
+
+    // --- 2. BLUR/DRAG/ZOOM EVENT (Hide Card) ---
+    network.on("blurNode", function (params) { tooltipEl.style.display = 'none'; });
+    network.on("dragging", function (params) { tooltipEl.style.display = 'none'; });
+    network.on("zoom", function (params) { tooltipEl.style.display = 'none'; });
+
+    // --- 3. SPOTLIGHT LOGIC ---
+    network.on("selectNode", function (params) {
+        if (params.nodes.length == 1) {
+            var selectedNodeId = params.nodes[0];
+            var connectedNodes = network.getConnectedNodes(selectedNodeId);
+            var connectedEdges = network.getConnectedEdges(selectedNodeId);
+
+            var allNodes = nodes.get();
+            var updatedNodes = [];
+            for (var i = 0; i < allNodes.length; i++) {
+                var node = allNodes[i];
+                if (!node.originalColor) node.originalColor = node.color;
+                
+                if (node.id == selectedNodeId || connectedNodes.includes(node.id)) {
+                    node.color = node.originalColor;
+                    node.opacity = 1.0;
+                } else {
+                    node.color = 'rgba(80, 80, 80, 0.1)'; 
+                    node.opacity = 0.1;
+                }
+                updatedNodes.push(node);
+            }
+            nodes.update(updatedNodes);
+
+            var allEdges = edges.get();
+            var updatedEdges = [];
+            for (var i = 0; i < allEdges.length; i++) {
+                var edge = allEdges[i];
+                if (!edge.originalColor) edge.originalColor = edge.color;
+                
+                if (connectedEdges.includes(edge.id)) {
+                    edge.color = edge.originalColor;
+                    edge.width = 4;
+                    edge.font = { size: 14, color: "#ffffff", strokeWidth: 3, strokeColor: "#000000", background: "none" };
+                } else {
+                    edge.color = 'rgba(80, 80, 80, 0.05)'; 
+                    edge.width = 1;
+                    edge.font = { size: 0, color: "transparent" };
+                }
+                updatedEdges.push(edge);
+            }
+            edges.update(updatedEdges);
+        }
+    });
+
+    network.on("deselectNode", function (params) {
+        var allNodes = nodes.get();
+        var updatedNodes = [];
+        for (var i = 0; i < allNodes.length; i++) {
+            var node = allNodes[i];
+            if (node.originalColor) {
+                node.color = node.originalColor;
+                node.opacity = 1.0;
+                updatedNodes.push(node);
+            }
+        }
+        nodes.update(updatedNodes);
+
+        var allEdges = edges.get();
+        var updatedEdges = [];
+        for (var i = 0; i < allEdges.length; i++) {
+            var edge = allEdges[i];
+            if (edge.originalColor) {
+                edge.color = edge.originalColor;
+                edge.width = edge.originalWidth || 2;
+                edge.font = { size: 10, color: "#aaaaaa", strokeWidth: 0 };
+                updatedEdges.push(edge);
+            }
+        }
+        edges.update(updatedEdges);
+    });
+</script>
+
+</body>
+</html>

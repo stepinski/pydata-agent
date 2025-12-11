@@ -1,0 +1,108 @@
+/* styles.css - Tokyo Night / LazyVim Theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  /* TOKYO NIGHT PALETTE */
+  --bg-dark: #1a1b26;       
+  --bg-card: #24283b;       
+  --fg-main: #a9b1d6;       
+  --fg-bright: #c0caf5;     
+  
+  --accent-blue: #7aa2f7;   
+  --accent-cyan: #7dcfff;   
+  --accent-purple: #bb9af7; 
+  --accent-green: #9ece6a;  
+  --accent-orange: #ff9e64; 
+  
+  --font-main: 'Inter', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+}
+
+/* Force Background Color */
+body, .reveal, .reveal-viewport {
+  background-color: var(--bg-dark) !important;
+  color: var(--fg-main);
+}
+
+/* Typography */
+.reveal h1 { color: var(--accent-blue) !important; text-shadow: 0 0 20px rgba(122, 162, 247, 0.2); }
+.reveal h2 { color: var(--accent-cyan) !important; }
+.reveal h3 { color: var(--accent-purple) !important; }
+.reveal p, .reveal li { color: var(--fg-main); font-family: var(--font-main); }
+.reveal strong { color: var(--fg-bright); font-weight: 700; }
+
+/* /* Code Blocks */ */
+/* .reveal pre { */
+/*   background: var(--bg-card); */
+/*   border: 1px solid rgba(122, 162, 247, 0.2); */
+/*   border-radius: 8px; */
+/*   box-shadow: 0 10px 30px rgba(0,0,0,0.3); */
+/* } */
+/**/
+/* .reveal code { */
+/*   font-family: var(--font-code); */
+/*   color: var(--accent-cyan); */
+/* } */
+
+/* Tables */
+.reveal table {
+  background: var(--bg-card);
+  color: var(--fg-main);
+  border: 1px solid var(--accent-blue);
+}
+.reveal th {
+  color: var(--accent-cyan);
+  border-bottom: 1px solid var(--accent-blue);
+}
+
+/* Blockquotes */
+.reveal blockquote {
+  background: rgba(122, 162, 247, 0.1);
+  border-left: 4px solid var(--accent-blue);
+  color: var(--fg-bright);
+}
+
+/* Mermaid Fixes for Dark Mode */
+.mermaid text { fill: var(--fg-bright) !important; }
+
+/* --- CODE BLOCKS (Nuclear Fix) --- */
+
+/* 1. Target the Quarto Wrapper */
+.reveal div.sourceCode {
+  background: var(--bg-card);
+  border-radius: 8px;
+  border: 1px solid rgba(122, 162, 247, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin: 1.5em 0;
+  width: 100%;
+  
+  /* Kill Scrollbars on the Wrapper */
+  overflow: hidden !important; 
+}
+
+/* 2. Target the Pre tag */
+.reveal pre {
+  /* Reset styles so the Wrapper handles the box look */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  width: 100% !important;
+  
+  /* Force Wrap & Kill Scrollbars */
+  overflow-x: hidden !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+}
+
+/* 3. Target the Code tag */
+.reveal pre code {
+  background: transparent !important;
+  border: none !important;
+  max-height: none !important;
+  
+  /* Ensure text wraps at the character level if needed */
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}

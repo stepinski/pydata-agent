@@ -1,0 +1,211 @@
+[
+  {
+    "file": "note_08.pdf",
+    "data": {
+      "main_topic": "The patient has an annual checkup and blood work appointment with Dr. Jeness Wilson at City Health Center on Tuesday, Oct 29.",
+      "keywords": [
+        "Annual checkup",
+        "blood work",
+        "Dr. Jeness Wilson",
+        "City Health Center",
+        "blood pressure follow-up",
+        "annual physical status",
+        "vaccination",
+        "sleep quality issues",
+        "photo ID",
+        "education list",
+        "results in 5 days"
+      ]
+    }
+  },
+  {
+    "file": "note_09.pdf",
+    "data": {
+      "main_topic": "The text discusses cognitive systems (System 1: automatic/intuitive thinking and System 2: deliberate/analytical thinking) and their implications on decision-making, mental shortcuts, anchoring effects, and applications in technology, environment, and government.",
+      "keywords": [
+        "Thinking",
+        "System 1",
+        "System 2",
+        "Anchoring effect",
+        "Mental shortcuts",
+        "Availability bias",
+        "Decision-making",
+        "Technology",
+        "Environment",
+        "Government",
+        "Cognitive biases",
+        "Mental models",
+        "Institutional choices",
+        "Judgment heuristics"
+      ]
+    }
+  },
+  {
+    "file": "note_O2.pdf",
+    "data": {
+      "main_topic": "Improving search strategies by integrating hybrid approaches like vector similarity and keyword matching to enhance relevance and secure case outcomes.",
+      "keywords": [
+        "Hybrid search strategy",
+        "Keyword matching",
+        "Vector similarity",
+        "BOTT keyword",
+        "De-vank Combined",
+        "L LOI",
+        "smoothic",
+        "secure cases",
+        "relevant results",
+        "optimize",
+        "butencyhouses"
+      ]
+    }
+  },
+  {
+    "file": "note_10.pdf",
+    "data": {
+      "main_topic": "The Product team aims to reduce document search time from 24 hours to 5 minutes by optimizing retrieval processes and implementing a pipeline for critical information access.",
+      "keywords": [
+        "document retrieval",
+        "search time reduction",
+        "Product team",
+        "500 documents",
+        "employee productivity",
+        "performance optimization",
+        "pipeline implementation",
+        "critical information retrieval"
+      ]
+    }
+  },
+  {
+    "file": "note_04.pdf",
+    "data": {
+      "main_topic": "Addressing documentation and data management challenges, including climbing data analysis, chunk effectiveness benchmarks, and presentation planning for October 25.",
+      "keywords": [
+        "documentation",
+        "UN context",
+        "climbing data",
+        "chunk effectiveness",
+        "compression techniques",
+        "benchmark",
+        "presentation",
+        "dynamic climbing",
+        "overlap",
+        "chaos",
+        "summories",
+        "priority",
+        "export",
+        "timeline"
+      ]
+    }
+  },
+  {
+    "file": "note_05.pdf",
+    "data": {
+      "main_topic": "The text compares CHROMDB (LOCAL) and PINECOME (Cloud) services, highlighting differences in cost, scalability, infrastructure, and deployment models.",
+      "keywords": [
+        "Pine Cone",
+        "ChromeDb",
+        "U.S.",
+        "CHROMDB (LOCAL)",
+        "PINECOME (Cloud)",
+        "local vs cloud",
+        "cost per 100k vectors",
+        "infrastructure",
+        "scalability",
+        "MVP",
+        "decision-making",
+        "THE-EVIPING in-phase?"
+      ]
+    }
+  },
+  {
+    "file": "note_07.pdf",
+    "data": {
+      "main_topic": "Summer 2016 Trip Ideas: Planning a 10-day Greece, 2-week Spain, or Portugal adventure with activities like history, beaches, and culture.",
+      "keywords": [
+        "Greece",
+        "Spain",
+        "Portugal",
+        "history",
+        "museums",
+        "beaches",
+        "wine",
+        "architecture",
+        "food",
+        "culture",
+        "travel planning",
+        "summer 2016",
+        "cost",
+        "time",
+        "ratings"
+      ]
+    }
+  },
+  {
+    "file": "note_06.pdf",
+    "data": {
+      "main_topic": "This text lists grocery items for a store purchase, including dates, budget, and store information.",
+      "keywords": [
+        "Grocery Items",
+        "Bread",
+        "Coffee",
+        "Chicken",
+        "Broccoli",
+        "Tomatoes",
+        "Posto",
+        "Oil",
+        "Cheese",
+        "Budget",
+        "Store",
+        "DOY",
+        "Saturday",
+        "Morning",
+        "Whole Foods",
+        "nfaro",
+        "Groce sizes",
+        "Oct 21",
+        "2026"
+      ]
+    }
+  },
+  {
+    "file": "note_03.pdf",
+    "data": {
+      "main_topic": "Setting up a model integration project involving Lampheim, Office LUNS, and local model customization with Retriever-West-formatter chains for performance optimization.",
+      "keywords": [
+        "Lampheim",
+        "Office LUNS",
+        "theme-2-76-hof model",
+        "Mr. McEupine",
+        "Retriever",
+        "West-formatter",
+        "batch processing",
+        "memory",
+        "example code",
+        "pipeline integration",
+        "FB model contest"
+      ]
+    }
+  },
+  {
+    "file": "note_01.pdf",
+    "data": {
+      "main_topic": "Discussion on implementing a local ChromoDB solution for vector observations, DBus lineage, and performance testing, including strategies for embeddings and quality models.",
+      "keywords": [
+        "vector observations",
+        "DBus lineage",
+        "models for quality",
+        "Embedding",
+        "ChromoDB",
+        "local solution",
+        "performance testing",
+        "embedolimp strategy",
+        "Bob",
+        "Sarah",
+        "benchwork",
+        "four",
+        "ne friend",
+        "Streut"
+      ]
+    }
+  }
+]

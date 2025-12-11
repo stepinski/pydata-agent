@@ -18,7 +18,7 @@ NOTE:
   "confidence": 0.5,
   "entities": ["concept1", "concept2"]}}
 
-JSON:"""
+JSON:""" 
     
     response = mlc_ai_infer(prompt)
     #  response = infer(prompt)

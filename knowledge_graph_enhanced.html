@@ -1,0 +1,674 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script>function neighbourhoodHighlight(params) {
+  // console.log("in nieghbourhoodhighlight");
+  allNodes = nodes.get({ returnType: "Object" });
+  // originalNodes = JSON.parse(JSON.stringify(allNodes));
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    highlightActive = true;
+    var i, j;
+    var selectedNode = params.nodes[0];
+    var degrees = 2;
+
+    // mark all nodes as hard to read.
+    for (let nodeId in allNodes) {
+      // nodeColors[nodeId] = allNodes[nodeId].color;
+      allNodes[nodeId].color = "rgba(200,200,200,0.5)";
+      if (allNodes[nodeId].hiddenLabel === undefined) {
+        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+    var connectedNodes = network.getConnectedNodes(selectedNode);
+    var allConnectedNodes = [];
+
+    // get the second degree nodes
+    for (i = 1; i < degrees; i++) {
+      for (j = 0; j < connectedNodes.length; j++) {
+        allConnectedNodes = allConnectedNodes.concat(
+          network.getConnectedNodes(connectedNodes[j])
+        );
+      }
+    }
+
+    // all second degree nodes get a different color and their label back
+    for (i = 0; i < allConnectedNodes.length; i++) {
+      // allNodes[allConnectedNodes[i]].color = "pink";
+      allNodes[allConnectedNodes[i]].color = "rgba(150,150,150,0.75)";
+      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[allConnectedNodes[i]].label =
+          allNodes[allConnectedNodes[i]].hiddenLabel;
+        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // all first degree nodes get their own color and their label back
+    for (i = 0; i < connectedNodes.length; i++) {
+      // allNodes[connectedNodes[i]].color = undefined;
+      allNodes[connectedNodes[i]].color = nodeColors[connectedNodes[i]];
+      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[connectedNodes[i]].label =
+          allNodes[connectedNodes[i]].hiddenLabel;
+        allNodes[connectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // the main node gets its own color and its label back.
+    // allNodes[selectedNode].color = undefined;
+    allNodes[selectedNode].color = nodeColors[selectedNode];
+    if (allNodes[selectedNode].hiddenLabel !== undefined) {
+      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+      allNodes[selectedNode].hiddenLabel = undefined;
+    }
+  } else if (highlightActive === true) {
+    // console.log("highlightActive was true");
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      // allNodes[nodeId].color = "purple";
+      allNodes[nodeId].color = nodeColors[nodeId];
+      // delete allNodes[nodeId].color;
+      if (allNodes[nodeId].hiddenLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+        allNodes[nodeId].hiddenLabel = undefined;
+      }
+    }
+    highlightActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    // console.log("Nothing was selected");
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        // allNodes[nodeId].color = {};
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function filterHighlight(params) {
+  allNodes = nodes.get({ returnType: "Object" });
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    filterActive = true;
+    let selectedNodes = params.nodes;
+
+    // hiding all nodes and saving the label
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = true;
+      if (allNodes[nodeId].savedLabel === undefined) {
+        allNodes[nodeId].savedLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+
+    for (let i=0; i < selectedNodes.length; i++) {
+      allNodes[selectedNodes[i]].hidden = false;
+      if (allNodes[selectedNodes[i]].savedLabel !== undefined) {
+        allNodes[selectedNodes[i]].label = allNodes[selectedNodes[i]].savedLabel;
+        allNodes[selectedNodes[i]].savedLabel = undefined;
+      }
+    }
+
+  } else if (filterActive === true) {
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = false;
+      if (allNodes[nodeId].savedLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].savedLabel;
+        allNodes[nodeId].savedLabel = undefined;
+      }
+    }
+    filterActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function selectNode(nodes) {
+  network.selectNodes(nodes);
+  neighbourhoodHighlight({ nodes: nodes });
+  return nodes;
+}
+
+function selectNodes(nodes) {
+  network.selectNodes(nodes);
+  filterHighlight({nodes: nodes});
+  return nodes;
+}
+
+function highlightFilter(filter) {
+  let selectedNodes = []
+  let selectedProp = filter['property']
+  if (filter['item'] === 'node') {
+    let allNodes = nodes.get({ returnType: "Object" });
+    for (let nodeId in allNodes) {
+      if (allNodes[nodeId][selectedProp] && filter['value'].includes((allNodes[nodeId][selectedProp]).toString())) {
+        selectedNodes.push(nodeId)
+      }
+    }
+  }
+  else if (filter['item'] === 'edge'){
+    let allEdges = edges.get({returnType: 'object'});
+    // check if the selected property exists for selected edge and select the nodes connected to the edge
+    for (let edge in allEdges) {
+      if (allEdges[edge][selectedProp] && filter['value'].includes((allEdges[edge][selectedProp]).toString())) {
+        selectedNodes.push(allEdges[edge]['from'])
+        selectedNodes.push(allEdges[edge]['to'])
+      }
+    }
+  }
+  selectNodes(selectedNodes)
+}</script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+            
+            
+            
+            
+            
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tom-select/2.0.0-rc.4/css/tom-select.min.css" integrity="sha512-43fHB3GLgZfz8QXl1RPQ8O66oIgv3po9cJ5erMt1c4QISq9dYb195T3vr5ImnJPXuVroKcGBPXBFKETW8jrPNQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/tom-select/2.0.0-rc.4/js/tom-select.complete.js" integrity="sha512-jeF9CfnvzDiw9G9xiksVjxR2lib44Gnovvkv+3CgCG6NXCD4gqlA5nDAVW5WjpA+i+/zKsUWV5xNEbW1X/HH0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 90vh;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+                <div id="select-menu" class="card-header">
+                    <div class="row no-gutters">
+                        <div class="col-10 pb-2">
+                            <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="selectNode([value]);"
+                            id="select-node"
+                            placeholder="Select node..."
+                            >
+                                <option selected>Select a Node by ID</option>
+                                
+                                    <option value="note_08.pdf">note_08.pdf</option>
+                                
+                                    <option value="Q3 Strategy Alignment">Q3 Strategy Alignment</option>
+                                
+                                    <option value="product launch">product launch</option>
+                                
+                                    <option value="budget">budget</option>
+                                
+                                    <option value="team structure">team structure</option>
+                                
+                                    <option value="risk management">risk management</option>
+                                
+                                    <option value="cloud">cloud</option>
+                                
+                                    <option value="note_06.pdf">note_06.pdf</option>
+                                
+                                    <option value="note_09.pdf">note_09.pdf</option>
+                                
+                                    <option value="note_O2.pdf">note_O2.pdf</option>
+                                
+                                    <option value="note_10.pdf">note_10.pdf</option>
+                                
+                                    <option value="note_04.pdf">note_04.pdf</option>
+                                
+                                    <option value="note_05.pdf">note_05.pdf</option>
+                                
+                                    <option value="note_07.pdf">note_07.pdf</option>
+                                
+                                    <option value="note_03.pdf">note_03.pdf</option>
+                                
+                                    <option value="note_01.pdf">note_01.pdf</option>
+                                
+                                    <option value="Cognitive Biases and Technology">Cognitive Biases and Technology</option>
+                                
+                                    <option value="system1">system1</option>
+                                
+                                    <option value="system2">system2</option>
+                                
+                                    <option value="anchoring effect">anchoring effect</option>
+                                
+                                    <option value="heuristics">heuristics</option>
+                                
+                                    <option value="availability bias">availability bias</option>
+                                
+                                    <option value="tech adoption">tech adoption</option>
+                                
+                                    <option value="decision-making">decision-making</option>
+                                
+                                    <option value="fatigue">fatigue</option>
+                                
+                                    <option value="sleep">sleep</option>
+                                
+                                    <option value="Hybrid Search Strategy">Hybrid Search Strategy</option>
+                                
+                                    <option value="vector db">vector db</option>
+                                
+                                    <option value="bm25">bm25</option>
+                                
+                                    <option value="rag pipeline">rag pipeline</option>
+                                
+                                    <option value="coche">coche</option>
+                                
+                                    <option value="Document Retrieval Optimization">Document Retrieval Optimization</option>
+                                
+                                    <option value="document retrieval">document retrieval</option>
+                                
+                                    <option value="search optimization">search optimization</option>
+                                
+                                    <option value="pipeline">pipeline</option>
+                                
+                                    <option value="index">index</option>
+                                
+                                    <option value="Document Compression and Optimization">Document Compression and Optimization</option>
+                                
+                                    <option value="summaries">summaries</option>
+                                
+                                    <option value="compression">compression</option>
+                                
+                                    <option value="chunk">chunk</option>
+                                
+                                    <option value="optimization">optimization</option>
+                                
+                                    <option value="benchmark">benchmark</option>
+                                
+                                    <option value="Database Services Comparison">Database Services Comparison</option>
+                                
+                                    <option value="chromedb">chromedb</option>
+                                
+                                    <option value="pinecone">pinecone</option>
+                                
+                                    <option value="api">api</option>
+                                
+                                    <option value="multi-user">multi-user</option>
+                                
+                                    <option value="scheduling">scheduling</option>
+                                
+                                    <option value="infrastructure">infrastructure</option>
+                                
+                                    <option value="mvp">mvp</option>
+                                
+                                    <option value="vector">vector</option>
+                                
+                                    <option value="beta sets">beta sets</option>
+                                
+                                    <option value="url routing">url routing</option>
+                                
+                                    <option value="Travel Planning">Travel Planning</option>
+                                
+                                    <option value="greece">greece</option>
+                                
+                                    <option value="spain">spain</option>
+                                
+                                    <option value="history">history</option>
+                                
+                                    <option value="museums">museums</option>
+                                
+                                    <option value="beaches">beaches</option>
+                                
+                                    <option value="wine">wine</option>
+                                
+                                    <option value="culture">culture</option>
+                                
+                                    <option value="architecture">architecture</option>
+                                
+                                    <option value="Grocery Shopping">Grocery Shopping</option>
+                                
+                                    <option value="food staples">food staples</option>
+                                
+                                    <option value="pantry essentials">pantry essentials</option>
+                                
+                                    <option value="Software Engineering">Software Engineering</option>
+                                
+                                    <option value="uml">uml</option>
+                                
+                                    <option value="batch processing">batch processing</option>
+                                
+                                    <option value="memory">memory</option>
+                                
+                                    <option value="formatters">formatters</option>
+                                
+                                    <option value="setup">setup</option>
+                                
+                                    <option value="Vector DB Decision">Vector DB Decision</option>
+                                
+                                    <option value="embedding">embedding</option>
+                                
+                                    <option value="local solution">local solution</option>
+                                
+                                    <option value="performance testing">performance testing</option>
+                                
+                                    <option value="resource allocation">resource allocation</option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-2 pb-2">
+                            <button type="button" class="btn btn-primary btn-block" onclick="neighbourhoodHighlight({nodes: []});">Reset Selection</button>
+                        </div>
+                    </div>
+                </div>
+            
+            
+              <div id="filter-menu" class="card-header">
+                <div class="row no-gutters">
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'item')"
+                            id="select-item"
+                        >
+                        <option value="">Select a network item</option>
+                        <option value="edge">edge</option>
+                        <option value="node">node</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'property')"
+                            id="select-property"
+                        >
+                        <option value="">Select a property...</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            id="select-value"
+                        >
+                        <option value="">Select value(s)...</option>
+                    </select>
+                  </div>
+                  <div class="col-1 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="highlightFilter(filter);">Filter</button>
+                  </div>
+                  <div class="col-2 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="clearFilter(true)">Reset Selection</button>
+                  </div>
+                </div>
+              </div>
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+                  new TomSelect("#select-node",{
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      }
+                  });
+              
+
+              
+                  // explicitly using onItemAdd and this function as we need to save multiple values
+                  let updateValueFilter = function() {
+                      return function () {
+                      filter['value'].push(arguments[0])
+                      }
+                  }
+
+                  let valueControl = new TomSelect("#select-value",{
+                      maxItems: null,
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: updateValueFilter()
+                  });
+
+                  let addValues = function() {
+                      return function () {
+                          // clear the current value options and add the selected attribute values
+                          // tom-select handles duplicates
+                          let selectedProperty = arguments[0];
+                          valueControl.clear();
+                          valueControl.clearOptions();
+                          filter['value'] = []
+                          if (filter['item'] === 'node') {
+                              for (let each in allNodes) {
+                                  valueControl.addOption({
+                                      id:allNodes[each][selectedProperty],
+                                      title:allNodes[each][selectedProperty]
+                                  })
+                              }
+                          }
+                          else if (filter['item'] === 'edge') {
+                              for (let each in allEdges) {
+                                  valueControl.addOption({
+                                      id:allEdges[each][selectedProperty],
+                                      title:allEdges[each][selectedProperty]
+                                  })
+                              }
+                          }
+                      }
+                  };
+
+                  let propControl = new TomSelect("#select-property",{
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addValues()
+                  });
+
+                  let addProperties = function() {
+                      return function () {
+                          // loops through the selected network item and adds the attributes to dropdown
+                          // tom-select handles duplicates
+                          clearFilter(false)
+                          if (arguments[0] === 'edge') {
+                              for (let each in allEdges) {
+                                  if (allEdges.hasOwnProperty(each)) {
+                                      for (let eachProp in allEdges[each]) {
+                                          if (allEdges[each].hasOwnProperty(eachProp)) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                          else if (arguments[0] === 'node') {
+                              for (let each in allNodes) {
+                                  if (allNodes.hasOwnProperty(each)) {
+                                      for (let eachProp in allNodes[each]) {
+                                          if (allNodes[each].hasOwnProperty(eachProp)
+                                              && (eachProp !== 'hidden' && eachProp !== 'savedLabel'
+                                                  && eachProp !== 'hiddenLabel')) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  };
+
+                  let itemControl = new TomSelect("#select-item",{
+                      create: false,
+                      sortField:{
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addProperties()
+                  });
+
+                  function clearFilter(reset) {
+                      // utility function to clear all the selected filter options
+                      // if reset is set to true, the existing filter will be removed
+                      // else, only the dropdown options are cleared
+                      propControl.clear();
+                      propControl.clearOptions();
+                      valueControl.clear();
+                      valueControl.clearOptions();
+                      filter = {
+                          item : '',
+                          property : '',
+                          value : []
+                      }
+                      if (reset) {
+                          itemControl.clear();
+                          filterHighlight({nodes: []})
+                      }
+                  }
+
+                  function updateFilter(value, key) {
+                      // key could be 'item' or 'property' and value is as selected in dropdown
+                      filter[key] = value
+                  }
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"font": {"color": "#FFFFFF"}, "group": "Note", "id": "note_08.pdf", "label": "note_08.pdf", "shape": "dot", "size": 15, "title": "File: note_08.pdf\n(Double click to focus)", "type": "Note"}, {"font": {"color": "#FFFFFF"}, "group": "Topic", "id": "Q3 Strategy Alignment", "label": "Q3 Strategy Alignment", "shape": "dot", "size": 25, "title": "Topic: Q3 Strategy Alignment", "type": "Topic"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "product launch", "label": "product launch", "shape": "dot", "size": 8, "title": "Keyword: product launch", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "budget", "label": "budget", "shape": "dot", "size": 8, "title": "Keyword: budget", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "team structure", "label": "team structure", "shape": "dot", "size": 8, "title": "Keyword: team structure", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "risk management", "label": "risk management", "shape": "dot", "size": 8, "title": "Keyword: risk management", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "cloud", "label": "cloud", "shape": "dot", "size": 8, "title": "Keyword: cloud", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Note", "id": "note_06.pdf", "label": "note_06.pdf", "shape": "dot", "size": 15, "title": "File: note_06.pdf\n(Double click to focus)", "type": "Note"}, {"font": {"color": "#FFFFFF"}, "group": "Note", "id": "note_09.pdf", "label": "note_09.pdf", "shape": "dot", "size": 15, "title": "File: note_09.pdf\n(Double click to focus)", "type": "Note"}, {"font": {"color": "#FFFFFF"}, "group": "Note", "id": "note_O2.pdf", "label": "note_O2.pdf", "shape": "dot", "size": 15, "title": "File: note_O2.pdf\n(Double click to focus)", "type": "Note"}, {"font": {"color": "#FFFFFF"}, "group": "Note", "id": "note_10.pdf", "label": "note_10.pdf", "shape": "dot", "size": 15, "title": "File: note_10.pdf\n(Double click to focus)", "type": "Note"}, {"font": {"color": "#FFFFFF"}, "group": "Note", "id": "note_04.pdf", "label": "note_04.pdf", "shape": "dot", "size": 15, "title": "File: note_04.pdf\n(Double click to focus)", "type": "Note"}, {"font": {"color": "#FFFFFF"}, "group": "Note", "id": "note_05.pdf", "label": "note_05.pdf", "shape": "dot", "size": 15, "title": "File: note_05.pdf\n(Double click to focus)", "type": "Note"}, {"font": {"color": "#FFFFFF"}, "group": "Note", "id": "note_07.pdf", "label": "note_07.pdf", "shape": "dot", "size": 15, "title": "File: note_07.pdf\n(Double click to focus)", "type": "Note"}, {"font": {"color": "#FFFFFF"}, "group": "Note", "id": "note_03.pdf", "label": "note_03.pdf", "shape": "dot", "size": 15, "title": "File: note_03.pdf\n(Double click to focus)", "type": "Note"}, {"font": {"color": "#FFFFFF"}, "group": "Note", "id": "note_01.pdf", "label": "note_01.pdf", "shape": "dot", "size": 15, "title": "File: note_01.pdf\n(Double click to focus)", "type": "Note"}, {"font": {"color": "#FFFFFF"}, "group": "Topic", "id": "Cognitive Biases and Technology", "label": "Cognitive Biases and Technology", "shape": "dot", "size": 25, "title": "Topic: Cognitive Biases and Technology", "type": "Topic"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "system1", "label": "system1", "shape": "dot", "size": 8, "title": "Keyword: system1", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "system2", "label": "system2", "shape": "dot", "size": 8, "title": "Keyword: system2", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "anchoring effect", "label": "anchoring effect", "shape": "dot", "size": 8, "title": "Keyword: anchoring effect", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "heuristics", "label": "heuristics", "shape": "dot", "size": 8, "title": "Keyword: heuristics", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "availability bias", "label": "availability bias", "shape": "dot", "size": 8, "title": "Keyword: availability bias", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "tech adoption", "label": "tech adoption", "shape": "dot", "size": 8, "title": "Keyword: tech adoption", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "decision-making", "label": "decision-making", "shape": "dot", "size": 8, "title": "Keyword: decision-making", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "fatigue", "label": "fatigue", "shape": "dot", "size": 8, "title": "Keyword: fatigue", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "sleep", "label": "sleep", "shape": "dot", "size": 8, "title": "Keyword: sleep", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Topic", "id": "Hybrid Search Strategy", "label": "Hybrid Search Strategy", "shape": "dot", "size": 25, "title": "Topic: Hybrid Search Strategy", "type": "Topic"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "vector db", "label": "vector db", "shape": "dot", "size": 8, "title": "Keyword: vector db", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "bm25", "label": "bm25", "shape": "dot", "size": 8, "title": "Keyword: bm25", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "rag pipeline", "label": "rag pipeline", "shape": "dot", "size": 8, "title": "Keyword: rag pipeline", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "coche", "label": "coche", "shape": "dot", "size": 8, "title": "Keyword: coche", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Topic", "id": "Document Retrieval Optimization", "label": "Document Retrieval Optimization", "shape": "dot", "size": 25, "title": "Topic: Document Retrieval Optimization", "type": "Topic"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "document retrieval", "label": "document retrieval", "shape": "dot", "size": 8, "title": "Keyword: document retrieval", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "search optimization", "label": "search optimization", "shape": "dot", "size": 8, "title": "Keyword: search optimization", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "pipeline", "label": "pipeline", "shape": "dot", "size": 8, "title": "Keyword: pipeline", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "index", "label": "index", "shape": "dot", "size": 8, "title": "Keyword: index", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Topic", "id": "Document Compression and Optimization", "label": "Document Compression and Optimization", "shape": "dot", "size": 25, "title": "Topic: Document Compression and Optimization", "type": "Topic"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "summaries", "label": "summaries", "shape": "dot", "size": 8, "title": "Keyword: summaries", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "compression", "label": "compression", "shape": "dot", "size": 8, "title": "Keyword: compression", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "chunk", "label": "chunk", "shape": "dot", "size": 8, "title": "Keyword: chunk", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "optimization", "label": "optimization", "shape": "dot", "size": 8, "title": "Keyword: optimization", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "benchmark", "label": "benchmark", "shape": "dot", "size": 8, "title": "Keyword: benchmark", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Topic", "id": "Database Services Comparison", "label": "Database Services Comparison", "shape": "dot", "size": 25, "title": "Topic: Database Services Comparison", "type": "Topic"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "chromedb", "label": "chromedb", "shape": "dot", "size": 8, "title": "Keyword: chromedb", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "pinecone", "label": "pinecone", "shape": "dot", "size": 8, "title": "Keyword: pinecone", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "api", "label": "api", "shape": "dot", "size": 8, "title": "Keyword: api", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "multi-user", "label": "multi-user", "shape": "dot", "size": 8, "title": "Keyword: multi-user", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "scheduling", "label": "scheduling", "shape": "dot", "size": 8, "title": "Keyword: scheduling", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "infrastructure", "label": "infrastructure", "shape": "dot", "size": 8, "title": "Keyword: infrastructure", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "mvp", "label": "mvp", "shape": "dot", "size": 8, "title": "Keyword: mvp", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "vector", "label": "vector", "shape": "dot", "size": 8, "title": "Keyword: vector", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "beta sets", "label": "beta sets", "shape": "dot", "size": 8, "title": "Keyword: beta sets", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "url routing", "label": "url routing", "shape": "dot", "size": 8, "title": "Keyword: url routing", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Topic", "id": "Travel Planning", "label": "Travel Planning", "shape": "dot", "size": 25, "title": "Topic: Travel Planning", "type": "Topic"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "greece", "label": "greece", "shape": "dot", "size": 8, "title": "Keyword: greece", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "spain", "label": "spain", "shape": "dot", "size": 8, "title": "Keyword: spain", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "history", "label": "history", "shape": "dot", "size": 8, "title": "Keyword: history", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "museums", "label": "museums", "shape": "dot", "size": 8, "title": "Keyword: museums", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "beaches", "label": "beaches", "shape": "dot", "size": 8, "title": "Keyword: beaches", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "wine", "label": "wine", "shape": "dot", "size": 8, "title": "Keyword: wine", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "culture", "label": "culture", "shape": "dot", "size": 8, "title": "Keyword: culture", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "architecture", "label": "architecture", "shape": "dot", "size": 8, "title": "Keyword: architecture", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Topic", "id": "Grocery Shopping", "label": "Grocery Shopping", "shape": "dot", "size": 25, "title": "Topic: Grocery Shopping", "type": "Topic"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "food staples", "label": "food staples", "shape": "dot", "size": 8, "title": "Keyword: food staples", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "pantry essentials", "label": "pantry essentials", "shape": "dot", "size": 8, "title": "Keyword: pantry essentials", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Topic", "id": "Software Engineering", "label": "Software Engineering", "shape": "dot", "size": 25, "title": "Topic: Software Engineering", "type": "Topic"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "uml", "label": "uml", "shape": "dot", "size": 8, "title": "Keyword: uml", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "batch processing", "label": "batch processing", "shape": "dot", "size": 8, "title": "Keyword: batch processing", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "memory", "label": "memory", "shape": "dot", "size": 8, "title": "Keyword: memory", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "formatters", "label": "formatters", "shape": "dot", "size": 8, "title": "Keyword: formatters", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "setup", "label": "setup", "shape": "dot", "size": 8, "title": "Keyword: setup", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Topic", "id": "Vector DB Decision", "label": "Vector DB Decision", "shape": "dot", "size": 25, "title": "Topic: Vector DB Decision", "type": "Topic"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "embedding", "label": "embedding", "shape": "dot", "size": 8, "title": "Keyword: embedding", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "local solution", "label": "local solution", "shape": "dot", "size": 8, "title": "Keyword: local solution", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "performance testing", "label": "performance testing", "shape": "dot", "size": 8, "title": "Keyword: performance testing", "type": "Keyword"}, {"font": {"color": "#FFFFFF"}, "group": "Keyword", "id": "resource allocation", "label": "resource allocation", "shape": "dot", "size": 8, "title": "Keyword: resource allocation", "type": "Keyword"}]);
+                  edges = new vis.DataSet([{"color": "#555555", "from": "note_08.pdf", "relation": "is_about", "title": "Relation: is_about", "to": "Q3 Strategy Alignment", "width": 1.0}, {"color": "#888888", "from": "note_08.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "product launch", "width": 1.0}, {"color": "#888888", "from": "note_08.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "budget", "width": 1.0}, {"color": "#888888", "from": "note_08.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "team structure", "width": 1.0}, {"color": "#888888", "from": "note_08.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "risk management", "width": 1.0}, {"color": "#888888", "from": "note_08.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "cloud", "width": 1.0}, {"color": "#F1C40F", "from": "note_08.pdf", "relation": "shares_keywords", "shared_kw": ["budget"], "title": "Relation: shares_keywords\nShared: budget", "to": "note_06.pdf", "width": 2.0}, {"color": "#3498DB", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.6545659899711609, "title": "Relation: content_similar\nSimilarity: 0.65", "to": "note_09.pdf", "width": 0.6545659899711609}, {"color": "#3498DB", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.7097833156585693, "title": "Relation: content_similar\nSimilarity: 0.71", "to": "note_O2.pdf", "width": 0.7097833156585693}, {"color": "#3498DB", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.7207991480827332, "title": "Relation: content_similar\nSimilarity: 0.72", "to": "note_10.pdf", "width": 0.7207991480827332}, {"color": "#3498DB", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.7485818862915039, "title": "Relation: content_similar\nSimilarity: 0.75", "to": "note_04.pdf", "width": 0.7485818862915039}, {"color": "#3498DB", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.7368711233139038, "title": "Relation: content_similar\nSimilarity: 0.74", "to": "note_05.pdf", "width": 0.7368711233139038}, {"color": "#3498DB", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.6875770092010498, "title": "Relation: content_similar\nSimilarity: 0.69", "to": "note_07.pdf", "width": 0.6875770092010498}, {"color": "#3498DB", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.7289726138114929, "title": "Relation: content_similar\nSimilarity: 0.73", "to": "note_03.pdf", "width": 0.7289726138114929}, {"color": "#3498DB", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.7141191363334656, "title": "Relation: content_similar\nSimilarity: 0.71", "to": "note_01.pdf", "width": 0.7141191363334656}, {"color": "#888888", "from": "budget", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "note_06.pdf", "width": 1.0}, {"color": "#555555", "from": "note_09.pdf", "relation": "is_about", "title": "Relation: is_about", "to": "Cognitive Biases and Technology", "width": 1.0}, {"color": "#888888", "from": "note_09.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "system1", "width": 1.0}, {"color": "#888888", "from": "note_09.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "system2", "width": 1.0}, {"color": "#888888", "from": "note_09.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "anchoring effect", "width": 1.0}, {"color": "#888888", "from": "note_09.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "heuristics", "width": 1.0}, {"color": "#888888", "from": "note_09.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "availability bias", "width": 1.0}, {"color": "#888888", "from": "note_09.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "tech adoption", "width": 1.0}, {"color": "#888888", "from": "note_09.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "decision-making", "width": 1.0}, {"color": "#888888", "from": "note_09.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "fatigue", "width": 1.0}, {"color": "#888888", "from": "note_09.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "sleep", "width": 1.0}, {"color": "#3498DB", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.6318578720092773, "title": "Relation: content_similar\nSimilarity: 0.63", "to": "note_O2.pdf", "width": 0.6318578720092773}, {"color": "#3498DB", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.6487400531768799, "title": "Relation: content_similar\nSimilarity: 0.65", "to": "note_10.pdf", "width": 0.6487400531768799}, {"color": "#3498DB", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.6629648208618164, "title": "Relation: content_similar\nSimilarity: 0.66", "to": "note_04.pdf", "width": 0.6629648208618164}, {"color": "#3498DB", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.6597655415534973, "title": "Relation: content_similar\nSimilarity: 0.66", "to": "note_05.pdf", "width": 0.6597655415534973}, {"color": "#3498DB", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.6337354183197021, "title": "Relation: content_similar\nSimilarity: 0.63", "to": "note_07.pdf", "width": 0.6337354183197021}, {"color": "#3498DB", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.6447675228118896, "title": "Relation: content_similar\nSimilarity: 0.64", "to": "note_06.pdf", "width": 0.6447675228118896}, {"color": "#3498DB", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.670373260974884, "title": "Relation: content_similar\nSimilarity: 0.67", "to": "note_03.pdf", "width": 0.670373260974884}, {"color": "#3498DB", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.651426374912262, "title": "Relation: content_similar\nSimilarity: 0.65", "to": "note_01.pdf", "width": 0.651426374912262}, {"color": "#555555", "from": "note_O2.pdf", "relation": "is_about", "title": "Relation: is_about", "to": "Hybrid Search Strategy", "width": 1.0}, {"color": "#888888", "from": "note_O2.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "vector db", "width": 1.0}, {"color": "#888888", "from": "note_O2.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "bm25", "width": 1.0}, {"color": "#888888", "from": "note_O2.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "rag pipeline", "width": 1.0}, {"color": "#888888", "from": "note_O2.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "coche", "width": 1.0}, {"color": "#F1C40F", "from": "note_O2.pdf", "relation": "shares_keywords", "shared_kw": ["vector db"], "title": "Relation: shares_keywords\nShared: vector db", "to": "note_01.pdf", "width": 2.0}, {"color": "#9B59B6", "dashes": true, "from": "note_O2.pdf", "matches": "\u0027pipeline\u0027 \u2248 \u0027rag pipeline\u0027", "relation": "semantic_keywords", "title": "Relation: semantic_keywords\nMatches: \u0027pipeline\u0027 \u2248 \u0027rag pipeline\u0027", "to": "note_10.pdf", "width": 1.5}, {"color": "#9B59B6", "dashes": true, "from": "note_O2.pdf", "matches": "\u0027vector\u0027 \u2248 \u0027vector db\u0027", "relation": "semantic_keywords", "title": "Relation: semantic_keywords\nMatches: \u0027vector\u0027 \u2248 \u0027vector db\u0027", "to": "note_05.pdf", "width": 1.5}, {"color": "#9B59B6", "dashes": true, "from": "note_O2.pdf", "matches": "\u0027pipeline\u0027 \u2248 \u0027rag pipeline\u0027", "relation": "semantic_keywords", "title": "Relation: semantic_keywords\nMatches: \u0027pipeline\u0027 \u2248 \u0027rag pipeline\u0027", "to": "note_03.pdf", "width": 1.5}, {"color": "#3498DB", "from": "note_O2.pdf", "relation": "content_similar", "similarity": 0.7740616202354431, "title": "Relation: content_similar\nSimilarity: 0.77", "to": "note_04.pdf", "width": 0.7740616202354431}, {"color": "#3498DB", "from": "note_O2.pdf", "relation": "content_similar", "similarity": 0.6923016905784607, "title": "Relation: content_similar\nSimilarity: 0.69", "to": "note_07.pdf", "width": 0.6923016905784607}, {"color": "#3498DB", "from": "note_O2.pdf", "relation": "content_similar", "similarity": 0.7327070236206055, "title": "Relation: content_similar\nSimilarity: 0.73", "to": "note_06.pdf", "width": 0.7327070236206055}, {"color": "#888888", "from": "vector db", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "note_01.pdf", "width": 1.0}, {"color": "#555555", "from": "note_10.pdf", "relation": "is_about", "title": "Relation: is_about", "to": "Document Retrieval Optimization", "width": 1.0}, {"color": "#888888", "from": "note_10.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "document retrieval", "width": 1.0}, {"color": "#888888", "from": "note_10.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "search optimization", "width": 1.0}, {"color": "#888888", "from": "note_10.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "pipeline", "width": 1.0}, {"color": "#888888", "from": "note_10.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "index", "width": 1.0}, {"color": "#F1C40F", "from": "note_10.pdf", "relation": "shares_keywords", "shared_kw": ["pipeline"], "title": "Relation: shares_keywords\nShared: pipeline", "to": "note_03.pdf", "width": 2.0}, {"color": "#9B59B6", "dashes": true, "from": "note_10.pdf", "matches": "\u0027optimization\u0027 \u2248 \u0027search optimization\u0027", "relation": "semantic_keywords", "title": "Relation: semantic_keywords\nMatches: \u0027optimization\u0027 \u2248 \u0027search optimization\u0027", "to": "note_04.pdf", "width": 1.5}, {"color": "#3498DB", "from": "note_10.pdf", "relation": "content_similar", "similarity": 0.7838746309280396, "title": "Relation: content_similar\nSimilarity: 0.78", "to": "note_05.pdf", "width": 0.7838746309280396}, {"color": "#3498DB", "from": "note_10.pdf", "relation": "content_similar", "similarity": 0.6861796975135803, "title": "Relation: content_similar\nSimilarity: 0.69", "to": "note_07.pdf", "width": 0.6861796975135803}, {"color": "#3498DB", "from": "note_10.pdf", "relation": "content_similar", "similarity": 0.7178879380226135, "title": "Relation: content_similar\nSimilarity: 0.72", "to": "note_06.pdf", "width": 0.7178879380226135}, {"color": "#3498DB", "from": "note_10.pdf", "relation": "content_similar", "similarity": 0.7696672677993774, "title": "Relation: content_similar\nSimilarity: 0.77", "to": "note_01.pdf", "width": 0.7696672677993774}, {"color": "#888888", "from": "pipeline", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "note_03.pdf", "width": 1.0}, {"color": "#555555", "from": "note_04.pdf", "relation": "is_about", "title": "Relation: is_about", "to": "Document Compression and Optimization", "width": 1.0}, {"color": "#888888", "from": "note_04.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "summaries", "width": 1.0}, {"color": "#888888", "from": "note_04.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "compression", "width": 1.0}, {"color": "#888888", "from": "note_04.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "chunk", "width": 1.0}, {"color": "#888888", "from": "note_04.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "optimization", "width": 1.0}, {"color": "#888888", "from": "note_04.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "benchmark", "width": 1.0}, {"color": "#3498DB", "from": "note_04.pdf", "relation": "content_similar", "similarity": 0.7797220945358276, "title": "Relation: content_similar\nSimilarity: 0.78", "to": "note_05.pdf", "width": 0.7797220945358276}, {"color": "#3498DB", "from": "note_04.pdf", "relation": "content_similar", "similarity": 0.7115523219108582, "title": "Relation: content_similar\nSimilarity: 0.71", "to": "note_07.pdf", "width": 0.7115523219108582}, {"color": "#3498DB", "from": "note_04.pdf", "relation": "content_similar", "similarity": 0.7131451368331909, "title": "Relation: content_similar\nSimilarity: 0.71", "to": "note_06.pdf", "width": 0.7131451368331909}, {"color": "#3498DB", "from": "note_04.pdf", "relation": "content_similar", "similarity": 0.7897712588310242, "title": "Relation: content_similar\nSimilarity: 0.79", "to": "note_03.pdf", "width": 0.7897712588310242}, {"color": "#3498DB", "from": "note_04.pdf", "relation": "content_similar", "similarity": 0.791729748249054, "title": "Relation: content_similar\nSimilarity: 0.79", "to": "note_01.pdf", "width": 0.791729748249054}, {"color": "#555555", "from": "note_05.pdf", "relation": "is_about", "title": "Relation: is_about", "to": "Database Services Comparison", "width": 1.0}, {"color": "#888888", "from": "note_05.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "chromedb", "width": 1.0}, {"color": "#888888", "from": "note_05.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "pinecone", "width": 1.0}, {"color": "#888888", "from": "note_05.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "api", "width": 1.0}, {"color": "#888888", "from": "note_05.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "multi-user", "width": 1.0}, {"color": "#888888", "from": "note_05.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "scheduling", "width": 1.0}, {"color": "#888888", "from": "note_05.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "infrastructure", "width": 1.0}, {"color": "#888888", "from": "note_05.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "mvp", "width": 1.0}, {"color": "#888888", "from": "note_05.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "vector", "width": 1.0}, {"color": "#888888", "from": "note_05.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "beta sets", "width": 1.0}, {"color": "#888888", "from": "note_05.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "url routing", "width": 1.0}, {"color": "#9B59B6", "dashes": true, "from": "note_05.pdf", "matches": "\u0027vector db\u0027 \u2248 \u0027vector\u0027", "relation": "semantic_keywords", "title": "Relation: semantic_keywords\nMatches: \u0027vector db\u0027 \u2248 \u0027vector\u0027", "to": "note_01.pdf", "width": 1.5}, {"color": "#3498DB", "from": "note_05.pdf", "relation": "content_similar", "similarity": 0.707679033279419, "title": "Relation: content_similar\nSimilarity: 0.71", "to": "note_07.pdf", "width": 0.707679033279419}, {"color": "#3498DB", "from": "note_05.pdf", "relation": "content_similar", "similarity": 0.7096027731895447, "title": "Relation: content_similar\nSimilarity: 0.71", "to": "note_06.pdf", "width": 0.7096027731895447}, {"color": "#3498DB", "from": "note_05.pdf", "relation": "content_similar", "similarity": 0.7834931015968323, "title": "Relation: content_similar\nSimilarity: 0.78", "to": "note_03.pdf", "width": 0.7834931015968323}, {"color": "#555555", "from": "note_07.pdf", "relation": "is_about", "title": "Relation: is_about", "to": "Travel Planning", "width": 1.0}, {"color": "#888888", "from": "note_07.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "greece", "width": 1.0}, {"color": "#888888", "from": "note_07.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "spain", "width": 1.0}, {"color": "#888888", "from": "note_07.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "history", "width": 1.0}, {"color": "#888888", "from": "note_07.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "museums", "width": 1.0}, {"color": "#888888", "from": "note_07.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "beaches", "width": 1.0}, {"color": "#888888", "from": "note_07.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "wine", "width": 1.0}, {"color": "#888888", "from": "note_07.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "culture", "width": 1.0}, {"color": "#888888", "from": "note_07.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "architecture", "width": 1.0}, {"color": "#3498DB", "from": "note_07.pdf", "relation": "content_similar", "similarity": 0.7810271978378296, "title": "Relation: content_similar\nSimilarity: 0.78", "to": "note_06.pdf", "width": 0.7810271978378296}, {"color": "#3498DB", "from": "note_07.pdf", "relation": "content_similar", "similarity": 0.6965541243553162, "title": "Relation: content_similar\nSimilarity: 0.70", "to": "note_03.pdf", "width": 0.6965541243553162}, {"color": "#3498DB", "from": "note_07.pdf", "relation": "content_similar", "similarity": 0.6776936650276184, "title": "Relation: content_similar\nSimilarity: 0.68", "to": "note_01.pdf", "width": 0.6776936650276184}, {"color": "#555555", "from": "note_06.pdf", "relation": "is_about", "title": "Relation: is_about", "to": "Grocery Shopping", "width": 1.0}, {"color": "#888888", "from": "note_06.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "food staples", "width": 1.0}, {"color": "#888888", "from": "note_06.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "pantry essentials", "width": 1.0}, {"color": "#3498DB", "from": "note_06.pdf", "relation": "content_similar", "similarity": 0.707725465297699, "title": "Relation: content_similar\nSimilarity: 0.71", "to": "note_03.pdf", "width": 0.707725465297699}, {"color": "#3498DB", "from": "note_06.pdf", "relation": "content_similar", "similarity": 0.6649133563041687, "title": "Relation: content_similar\nSimilarity: 0.66", "to": "note_01.pdf", "width": 0.6649133563041687}, {"color": "#555555", "from": "note_03.pdf", "relation": "is_about", "title": "Relation: is_about", "to": "Software Engineering", "width": 1.0}, {"color": "#888888", "from": "note_03.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "uml", "width": 1.0}, {"color": "#888888", "from": "note_03.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "batch processing", "width": 1.0}, {"color": "#888888", "from": "note_03.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "memory", "width": 1.0}, {"color": "#888888", "from": "note_03.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "formatters", "width": 1.0}, {"color": "#888888", "from": "note_03.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "setup", "width": 1.0}, {"color": "#3498DB", "from": "note_03.pdf", "relation": "content_similar", "similarity": 0.7697776556015015, "title": "Relation: content_similar\nSimilarity: 0.77", "to": "note_01.pdf", "width": 0.7697776556015015}, {"color": "#555555", "from": "note_01.pdf", "relation": "is_about", "title": "Relation: is_about", "to": "Vector DB Decision", "width": 1.0}, {"color": "#888888", "from": "note_01.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "embedding", "width": 1.0}, {"color": "#888888", "from": "note_01.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "local solution", "width": 1.0}, {"color": "#888888", "from": "note_01.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "performance testing", "width": 1.0}, {"color": "#888888", "from": "note_01.pdf", "relation": "has_keyword", "title": "Relation: has_keyword", "to": "resource allocation", "width": 1.0}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"nodes": {"font": {"strokeWidth": 0}}, "edges": {"color": {"inherit": false}, "smooth": {"type": "continuous", "roundness": 0.5}}, "physics": {"forceAtlas2Based": {"gravitationalConstant": -50, "centralGravity": 0.01, "springLength": 100, "springConstant": 0.08, "damping": 0.4}, "minVelocity": 0.75, "solver": "forceAtlas2Based"}, "interaction": {"hover": true, "navigationButtons": true, "keyboard": true}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+                    network.on("selectNode", neighbourhoodHighlight);
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

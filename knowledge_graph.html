@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "blue", "font": {"color": "white"}, "id": "note_08.pdf", "label": "note_08.pdf", "shape": "dot", "size": 10, "type": "Note"}, {"color": "green", "font": {"color": "white"}, "id": "Annual checkup", "label": "Annual checkup", "shape": "dot", "size": 10, "type": "Topic"}, {"color": "red", "font": {"color": "white"}, "id": "blood work", "label": "blood work", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "blood pressure", "label": "blood pressure", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "sleep quality", "label": "sleep quality", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "vaccination status", "label": "vaccination status", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "insurance documents", "label": "insurance documents", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "post-results consultation", "label": "post-results consultation", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "blue", "font": {"color": "white"}, "id": "note_09.pdf", "label": "note_09.pdf", "shape": "dot", "size": 10, "type": "Note"}, {"color": "green", "font": {"color": "white"}, "id": "Cognitive Biases and Decision-Making in Technology and Psychology", "label": "Cognitive Biases and Decision-Making in Technology and Psychology", "shape": "dot", "size": 10, "type": "Topic"}, {"color": "red", "font": {"color": "white"}, "id": "anchoring effect", "label": "anchoring effect", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "heuristics", "label": "heuristics", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "availability bias", "label": "availability bias", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "framing effect", "label": "framing effect", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "authority bias", "label": "authority bias", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "push model", "label": "push model", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "reilly\u2019s model", "label": "reilly\u2019s model", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "blue", "font": {"color": "white"}, "id": "note_O2.pdf", "label": "note_O2.pdf", "shape": "dot", "size": 10, "type": "Note"}, {"color": "green", "font": {"color": "white"}, "id": "Hybrid Search Strategy Optimization", "label": "Hybrid Search Strategy Optimization", "shape": "dot", "size": 10, "type": "Topic"}, {"color": "red", "font": {"color": "white"}, "id": "semantic search", "label": "semantic search", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "keyword matching", "label": "keyword matching", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "vector embeddings", "label": "vector embeddings", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "bmi", "label": "bmi", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "rag pipelines", "label": "rag pipelines", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "loi", "label": "loi", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "potency", "label": "potency", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "hallucination", "label": "hallucination", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "blue", "font": {"color": "white"}, "id": "note_10.pdf", "label": "note_10.pdf", "shape": "dot", "size": 10, "type": "Note"}, {"color": "green", "font": {"color": "white"}, "id": "Documentation System Optimization", "label": "Documentation System Optimization", "shape": "dot", "size": 10, "type": "Topic"}, {"color": "red", "font": {"color": "white"}, "id": "documentation", "label": "documentation", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "critical info", "label": "critical info", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "r46 pipeline", "label": "r46 pipeline", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "work sources", "label": "work sources", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "search optimization", "label": "search optimization", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "pennsylvania", "label": "pennsylvania", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "roll", "label": "roll", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "blue", "font": {"color": "white"}, "id": "note_05.pdf", "label": "note_05.pdf", "shape": "dot", "size": 10, "type": "Note"}, {"color": "blue", "font": {"color": "white"}, "id": "note_04.pdf", "label": "note_04.pdf", "shape": "dot", "size": 10, "type": "Note"}, {"color": "green", "font": {"color": "white"}, "id": "Document Optimization and Compression Techniques", "label": "Document Optimization and Compression Techniques", "shape": "dot", "size": 10, "type": "Topic"}, {"color": "red", "font": {"color": "white"}, "id": "document optimization", "label": "document optimization", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "compression techniques", "label": "compression techniques", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "benchmark chunk effectiveness", "label": "benchmark chunk effectiveness", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "dynamic climbing", "label": "dynamic climbing", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "treasure touch presentation", "label": "treasure touch presentation", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "export process", "label": "export process", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "green", "font": {"color": "white"}, "id": "Comparison of Local and Cloud Database Services", "label": "Comparison of Local and Cloud Database Services", "shape": "dot", "size": 10, "type": "Topic"}, {"color": "red", "font": {"color": "white"}, "id": "chromedb", "label": "chromedb", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "pinecone", "label": "pinecone", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "local database", "label": "local database", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "cloud database", "label": "cloud database", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "open-source", "label": "open-source", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "scalable", "label": "scalable", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "multi-tenant", "label": "multi-tenant", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "cost per vector", "label": "cost per vector", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "small datasets", "label": "small datasets", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "data infrastructure", "label": "data infrastructure", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "budget-conscious", "label": "budget-conscious", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "no multi-user support", "label": "no multi-user support", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "blue", "font": {"color": "white"}, "id": "note_07.pdf", "label": "note_07.pdf", "shape": "dot", "size": 10, "type": "Note"}, {"color": "green", "font": {"color": "white"}, "id": "Summer 2016 Trip Ideas", "label": "Summer 2016 Trip Ideas", "shape": "dot", "size": 10, "type": "Topic"}, {"color": "red", "font": {"color": "white"}, "id": "greece", "label": "greece", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "spain", "label": "spain", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "fortugena", "label": "fortugena", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "history", "label": "history", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "museums", "label": "museums", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "beaches", "label": "beaches", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "wine", "label": "wine", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "architecture", "label": "architecture", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "cultural experiences", "label": "cultural experiences", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "food", "label": "food", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "blue", "font": {"color": "white"}, "id": "note_06.pdf", "label": "note_06.pdf", "shape": "dot", "size": 10, "type": "Note"}, {"color": "green", "font": {"color": "white"}, "id": "Grocery Shopping", "label": "Grocery Shopping", "shape": "dot", "size": 10, "type": "Topic"}, {"color": "red", "font": {"color": "white"}, "id": "milk", "label": "milk", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "coffee (arabica beans)", "label": "coffee (arabica beans)", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "chicken (breast)", "label": "chicken (breast)", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "broccoli", "label": "broccoli", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "tomatoes", "label": "tomatoes", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "pesto", "label": "pesto", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "dove oil", "label": "dove oil", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "cheese (cheddar)", "label": "cheese (cheddar)", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "blue", "font": {"color": "white"}, "id": "note_03.pdf", "label": "note_03.pdf", "shape": "dot", "size": 10, "type": "Note"}, {"color": "green", "font": {"color": "white"}, "id": "Model Setup and Optimization for Office LLDs", "label": "Model Setup and Optimization for Office LLDs", "shape": "dot", "size": 10, "type": "Topic"}, {"color": "red", "font": {"color": "white"}, "id": "lampthorn", "label": "lampthorn", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "office llds", "label": "office llds", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "model setup", "label": "model setup", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "chain creation", "label": "chain creation", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "performance enhancements", "label": "performance enhancements", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "batch processing", "label": "batch processing", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "fb model contest", "label": "fb model contest", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "memory optimization", "label": "memory optimization", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "compatibility", "label": "compatibility", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "testing", "label": "testing", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "blue", "font": {"color": "white"}, "id": "note_01.pdf", "label": "note_01.pdf", "shape": "dot", "size": 10, "type": "Note"}, {"color": "green", "font": {"color": "white"}, "id": "Vector Database Selection and Implementation", "label": "Vector Database Selection and Implementation", "shape": "dot", "size": 10, "type": "Topic"}, {"color": "red", "font": {"color": "white"}, "id": "vector db", "label": "vector db", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "chromadb", "label": "chromadb", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "embedding", "label": "embedding", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "performance testing", "label": "performance testing", "shape": "dot", "size": 10, "type": "Keyword"}, {"color": "red", "font": {"color": "white"}, "id": "local solution", "label": "local solution", "shape": "dot", "size": 10, "type": "Keyword"}]);
+                  edges = new vis.DataSet([{"from": "note_08.pdf", "relation": "is_about", "to": "Annual checkup", "width": 1}, {"from": "note_08.pdf", "relation": "has_keyword", "to": "blood work", "width": 1}, {"from": "note_08.pdf", "relation": "has_keyword", "to": "blood pressure", "width": 1}, {"from": "note_08.pdf", "relation": "has_keyword", "to": "sleep quality", "width": 1}, {"from": "note_08.pdf", "relation": "has_keyword", "to": "vaccination status", "width": 1}, {"from": "note_08.pdf", "relation": "has_keyword", "to": "insurance documents", "width": 1}, {"from": "note_08.pdf", "relation": "has_keyword", "to": "post-results consultation", "width": 1}, {"from": "note_09.pdf", "relation": "is_about", "to": "Cognitive Biases and Decision-Making in Technology and Psychology", "width": 1}, {"from": "note_09.pdf", "relation": "has_keyword", "to": "anchoring effect", "width": 1}, {"from": "note_09.pdf", "relation": "has_keyword", "to": "heuristics", "width": 1}, {"from": "note_09.pdf", "relation": "has_keyword", "to": "availability bias", "width": 1}, {"from": "note_09.pdf", "relation": "has_keyword", "to": "framing effect", "width": 1}, {"from": "note_09.pdf", "relation": "has_keyword", "to": "authority bias", "width": 1}, {"from": "note_09.pdf", "relation": "has_keyword", "to": "push model", "width": 1}, {"from": "note_09.pdf", "relation": "has_keyword", "to": "reilly\u2019s model", "width": 1}, {"from": "note_O2.pdf", "relation": "is_about", "to": "Hybrid Search Strategy Optimization", "width": 1}, {"from": "note_O2.pdf", "relation": "has_keyword", "to": "semantic search", "width": 1}, {"from": "note_O2.pdf", "relation": "has_keyword", "to": "keyword matching", "width": 1}, {"from": "note_O2.pdf", "relation": "has_keyword", "to": "vector embeddings", "width": 1}, {"from": "note_O2.pdf", "relation": "has_keyword", "to": "bmi", "width": 1}, {"from": "note_O2.pdf", "relation": "has_keyword", "to": "rag pipelines", "width": 1}, {"from": "note_O2.pdf", "relation": "has_keyword", "to": "loi", "width": 1}, {"from": "note_O2.pdf", "relation": "has_keyword", "to": "potency", "width": 1}, {"from": "note_O2.pdf", "relation": "has_keyword", "to": "hallucination", "width": 1}, {"from": "note_10.pdf", "relation": "is_about", "to": "Documentation System Optimization", "width": 1}, {"from": "note_10.pdf", "relation": "has_keyword", "to": "documentation", "width": 1}, {"from": "note_10.pdf", "relation": "has_keyword", "to": "critical info", "width": 1}, {"from": "note_10.pdf", "relation": "has_keyword", "to": "r46 pipeline", "width": 1}, {"from": "note_10.pdf", "relation": "has_keyword", "to": "work sources", "width": 1}, {"from": "note_10.pdf", "relation": "has_keyword", "to": "search optimization", "width": 1}, {"from": "note_10.pdf", "relation": "has_keyword", "to": "pennsylvania", "width": 1}, {"from": "note_10.pdf", "relation": "has_keyword", "to": "roll", "width": 1}, {"from": "r46 pipeline", "relation": "has_keyword", "to": "note_05.pdf", "width": 1}, {"from": "note_04.pdf", "relation": "is_about", "to": "Document Optimization and Compression Techniques", "width": 1}, {"from": "note_04.pdf", "relation": "has_keyword", "to": "document optimization", "width": 1}, {"from": "note_04.pdf", "relation": "has_keyword", "to": "compression techniques", "width": 1}, {"from": "note_04.pdf", "relation": "has_keyword", "to": "benchmark chunk effectiveness", "width": 1}, {"from": "note_04.pdf", "relation": "has_keyword", "to": "dynamic climbing", "width": 1}, {"from": "note_04.pdf", "relation": "has_keyword", "to": "treasure touch presentation", "width": 1}, {"from": "note_04.pdf", "relation": "has_keyword", "to": "export process", "width": 1}, {"from": "note_05.pdf", "relation": "is_about", "to": "Comparison of Local and Cloud Database Services", "width": 1}, {"from": "note_05.pdf", "relation": "has_keyword", "to": "chromedb", "width": 1}, {"from": "note_05.pdf", "relation": "has_keyword", "to": "pinecone", "width": 1}, {"from": "note_05.pdf", "relation": "has_keyword", "to": "local database", "width": 1}, {"from": "note_05.pdf", "relation": "has_keyword", "to": "cloud database", "width": 1}, {"from": "note_05.pdf", "relation": "has_keyword", "to": "open-source", "width": 1}, {"from": "note_05.pdf", "relation": "has_keyword", "to": "scalable", "width": 1}, {"from": "note_05.pdf", "relation": "has_keyword", "to": "multi-tenant", "width": 1}, {"from": "note_05.pdf", "relation": "has_keyword", "to": "cost per vector", "width": 1}, {"from": "note_05.pdf", "relation": "has_keyword", "to": "small datasets", "width": 1}, {"from": "note_05.pdf", "relation": "has_keyword", "to": "data infrastructure", "width": 1}, {"from": "note_05.pdf", "relation": "has_keyword", "to": "budget-conscious", "width": 1}, {"from": "note_05.pdf", "relation": "has_keyword", "to": "no multi-user support", "width": 1}, {"from": "note_07.pdf", "relation": "is_about", "to": "Summer 2016 Trip Ideas", "width": 1}, {"from": "note_07.pdf", "relation": "has_keyword", "to": "greece", "width": 1}, {"from": "note_07.pdf", "relation": "has_keyword", "to": "spain", "width": 1}, {"from": "note_07.pdf", "relation": "has_keyword", "to": "fortugena", "width": 1}, {"from": "note_07.pdf", "relation": "has_keyword", "to": "history", "width": 1}, {"from": "note_07.pdf", "relation": "has_keyword", "to": "museums", "width": 1}, {"from": "note_07.pdf", "relation": "has_keyword", "to": "beaches", "width": 1}, {"from": "note_07.pdf", "relation": "has_keyword", "to": "wine", "width": 1}, {"from": "note_07.pdf", "relation": "has_keyword", "to": "architecture", "width": 1}, {"from": "note_07.pdf", "relation": "has_keyword", "to": "cultural experiences", "width": 1}, {"from": "note_07.pdf", "relation": "has_keyword", "to": "food", "width": 1}, {"from": "note_06.pdf", "relation": "is_about", "to": "Grocery Shopping", "width": 1}, {"from": "note_06.pdf", "relation": "has_keyword", "to": "milk", "width": 1}, {"from": "note_06.pdf", "relation": "has_keyword", "to": "coffee (arabica beans)", "width": 1}, {"from": "note_06.pdf", "relation": "has_keyword", "to": "chicken (breast)", "width": 1}, {"from": "note_06.pdf", "relation": "has_keyword", "to": "broccoli", "width": 1}, {"from": "note_06.pdf", "relation": "has_keyword", "to": "tomatoes", "width": 1}, {"from": "note_06.pdf", "relation": "has_keyword", "to": "pesto", "width": 1}, {"from": "note_06.pdf", "relation": "has_keyword", "to": "dove oil", "width": 1}, {"from": "note_06.pdf", "relation": "has_keyword", "to": "cheese (cheddar)", "width": 1}, {"from": "note_03.pdf", "relation": "is_about", "to": "Model Setup and Optimization for Office LLDs", "width": 1}, {"from": "note_03.pdf", "relation": "has_keyword", "to": "lampthorn", "width": 1}, {"from": "note_03.pdf", "relation": "has_keyword", "to": "office llds", "width": 1}, {"from": "note_03.pdf", "relation": "has_keyword", "to": "model setup", "width": 1}, {"from": "note_03.pdf", "relation": "has_keyword", "to": "chain creation", "width": 1}, {"from": "note_03.pdf", "relation": "has_keyword", "to": "performance enhancements", "width": 1}, {"from": "note_03.pdf", "relation": "has_keyword", "to": "batch processing", "width": 1}, {"from": "note_03.pdf", "relation": "has_keyword", "to": "fb model contest", "width": 1}, {"from": "note_03.pdf", "relation": "has_keyword", "to": "memory optimization", "width": 1}, {"from": "note_03.pdf", "relation": "has_keyword", "to": "compatibility", "width": 1}, {"from": "note_03.pdf", "relation": "has_keyword", "to": "testing", "width": 1}, {"from": "note_01.pdf", "relation": "is_about", "to": "Vector Database Selection and Implementation", "width": 1}, {"from": "note_01.pdf", "relation": "has_keyword", "to": "vector db", "width": 1}, {"from": "note_01.pdf", "relation": "has_keyword", "to": "chromadb", "width": 1}, {"from": "note_01.pdf", "relation": "has_keyword", "to": "embedding", "width": 1}, {"from": "note_01.pdf", "relation": "has_keyword", "to": "performance testing", "width": 1}, {"from": "note_01.pdf", "relation": "has_keyword", "to": "local solution", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
