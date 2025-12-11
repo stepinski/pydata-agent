@@ -1,0 +1,62 @@
+[
+  {
+    "file": "note_08.pdf",
+    "status": "success",
+    "final_output": "\n\n{\n    \"main_topic\": \"Q3 Strategy Alignment\",\n    \"keywords\": [\"Product Launch\", \"Budget\", \"Team Structure\", \"Risk Management\", \"Cloud\"]\n}",
+    "raw_text": "\n\n{\n    \"main_topic\": \"Q3 Strategy Alignment\",\n    \"keywords\": [\"Product Launch\", \"Budget\", \"Team Structure\", \"Risk Management\", \"Cloud\"]\n}"
+  },
+  {
+    "file": "note_09.pdf",
+    "status": "success",
+    "final_output": "\n\n{\n    \"main_topic\": \"Cognitive Biases and Technology\",\n    \"keywords\": [\"System1\", \"System2\", \"Anchoring Effect\", \"Heuristics\", \"Availability Bias\", \"Tech Adoption\", \"Decision-Making\", \"Fatigue\", \"Sleep\"]\n}",
+    "raw_text": "\n\n{\n    \"main_topic\": \"Cognitive Biases and Technology\",\n    \"keywords\": [\"System1\", \"System2\", \"Anchoring Effect\", \"Heuristics\", \"Availability Bias\", \"Tech Adoption\", \"Decision-Making\", \"Fatigue\", \"Sleep\"]\n}"
+  },
+  {
+    "file": "note_O2.pdf",
+    "status": "success",
+    "final_output": "{\"main_topic\": \"Hybrid Search Strategy\", \"keywords\": [\"Vector DB\", \"BM25\", \"RAG Pipeline\", \"Coche\"]}",
+    "raw_text": "{\"main_topic\": \"Hybrid Search Strategy\", \"keywords\": [\"Vector DB\", \"BM25\", \"RAG Pipeline\", \"Coche\"]}"
+  },
+  {
+    "file": "note_10.pdf",
+    "status": "success",
+    "final_output": "\n\n{\n    \"main_topic\": \"Document Retrieval Optimization\",\n    \"keywords\": [\"Document Retrieval\", \"Search Optimization\", \"Pipeline\", \"Index\"]\n}",
+    "raw_text": "\n\n{\n    \"main_topic\": \"Document Retrieval Optimization\",\n    \"keywords\": [\"Document Retrieval\", \"Search Optimization\", \"Pipeline\", \"Index\"]\n}"
+  },
+  {
+    "file": "note_04.pdf",
+    "status": "success",
+    "final_output": "\n\n{\n    \"main_topic\": \"Document Compression and Optimization\",\n    \"keywords\": [\"summaries\", \"compression\", \"chunk\", \"optimization\", \"benchmark\"]\n}",
+    "raw_text": "\n\n{\n    \"main_topic\": \"Document Compression and Optimization\",\n    \"keywords\": [\"summaries\", \"compression\", \"chunk\", \"optimization\", \"benchmark\"]\n}"
+  },
+  {
+    "file": "note_05.pdf",
+    "status": "success",
+    "final_output": "\n\n{\n    \"main_topic\": \"Database Services Comparison\",\n    \"keywords\": [\"ChromeDB\", \"Pinecone\", \"API\", \"multi-user\", \"scheduling\", \"infrastructure\", \"MVP\", \"vector\", \"beta sets\", \"URL routing\"]\n}",
+    "raw_text": "\n\n{\n    \"main_topic\": \"Database Services Comparison\",\n    \"keywords\": [\"ChromeDB\", \"Pinecone\", \"API\", \"multi-user\", \"scheduling\", \"infrastructure\", \"MVP\", \"vector\", \"beta sets\", \"URL routing\"]\n}"
+  },
+  {
+    "file": "note_07.pdf",
+    "status": "success",
+    "final_output": "\n\n{\n    \"main_topic\": \"Travel Planning\",\n    \"keywords\": [\"Greece\", \"Spain\", \"History\", \"Museums\", \"Beaches\", \"Wine\", \"Culture\", \"Architecture\"]\n}",
+    "raw_text": "\n\n{\n    \"main_topic\": \"Travel Planning\",\n    \"keywords\": [\"Greece\", \"Spain\", \"History\", \"Museums\", \"Beaches\", \"Wine\", \"Culture\", \"Architecture\"]\n}"
+  },
+  {
+    "file": "note_06.pdf",
+    "status": "success",
+    "final_output": "{\"main_topic\": \"Grocery Shopping\", \"keywords\": [\"Food Staples\", \"Pantry Essentials\", \"Budget\"]}",
+    "raw_text": "{\"main_topic\": \"Grocery Shopping\", \"keywords\": [\"Food Staples\", \"Pantry Essentials\", \"Budget\"]}"
+  },
+  {
+    "file": "note_03.pdf",
+    "status": "success",
+    "final_output": "\n\n{\n    \"main_topic\": \"Software Engineering\",\n    \"keywords\": [\"UML\", \"Batch processing\", \"Memory\", \"Pipeline\", \"Formatters\", \"Setup\"]\n}",
+    "raw_text": "\n\n{\n    \"main_topic\": \"Software Engineering\",\n    \"keywords\": [\"UML\", \"Batch processing\", \"Memory\", \"Pipeline\", \"Formatters\", \"Setup\"]\n}"
+  },
+  {
+    "file": "note_01.pdf",
+    "status": "success",
+    "final_output": "\n\n{\n    \"main_topic\": \"Vector DB Decision\",\n    \"keywords\": [\"Vector DB\", \"Embedding\", \"Local Solution\", \"Performance Testing\", \"Resource Allocation\"]\n}",
+    "raw_text": "\n\n{\n    \"main_topic\": \"Vector DB Decision\",\n    \"keywords\": [\"Vector DB\", \"Embedding\", \"Local Solution\", \"Performance Testing\", \"Resource Allocation\"]\n}"
+  }
+]

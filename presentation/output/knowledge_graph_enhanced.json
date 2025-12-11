@@ -1,0 +1,1124 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_08.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Q3 Strategy Alignment"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "product launch"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "budget"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "team structure"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "risk management"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "cloud"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_09.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Cognitive Biases and Technology"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "system1"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "system2"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "anchoring effect"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "heuristics"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "availability bias"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "tech adoption"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "decision-making"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "fatigue"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "sleep"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_O2.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Hybrid Search Strategy"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "vector db"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "bm25"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "rag pipeline"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "coche"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_10.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Document Retrieval Optimization"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "document retrieval"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "search optimization"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "pipeline"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "index"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_04.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Document Compression and Optimization"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "summaries"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "compression"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "chunk"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "optimization"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "benchmark"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_05.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Database Services Comparison"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "chromedb"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "pinecone"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "api"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "multi-user"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "scheduling"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "infrastructure"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "mvp"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "vector"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "beta sets"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "url routing"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_07.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Travel Planning"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "greece"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "spain"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "history"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "museums"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "beaches"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "wine"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "culture"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "architecture"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_06.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Grocery Shopping"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "food staples"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "pantry essentials"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_03.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Software Engineering"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "uml"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "batch processing"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "memory"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "formatters"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "setup"
+    },
+    {
+      "type": "Note",
+      "color": "blue",
+      "id": "note_01.pdf"
+    },
+    {
+      "type": "Topic",
+      "color": "green",
+      "id": "Vector DB Decision"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "embedding"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "local solution"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "performance testing"
+    },
+    {
+      "type": "Keyword",
+      "color": "red",
+      "id": "resource allocation"
+    }
+  ],
+  "links": [
+    {
+      "relation": "is_about",
+      "weight": 1.0,
+      "source": "note_08.pdf",
+      "target": "Q3 Strategy Alignment"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_08.pdf",
+      "target": "product launch"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_08.pdf",
+      "target": "budget"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_08.pdf",
+      "target": "team structure"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_08.pdf",
+      "target": "risk management"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_08.pdf",
+      "target": "cloud"
+    },
+    {
+      "relation": "shares_keywords",
+      "shared_kw": [
+        "budget"
+      ],
+      "weight": 2.0,
+      "source": "note_08.pdf",
+      "target": "note_06.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6545659899711609,
+      "weight": 0.6545659899711609,
+      "source": "note_08.pdf",
+      "target": "note_09.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7097833156585693,
+      "weight": 0.7097833156585693,
+      "source": "note_08.pdf",
+      "target": "note_O2.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7207991480827332,
+      "weight": 0.7207991480827332,
+      "source": "note_08.pdf",
+      "target": "note_10.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7485818862915039,
+      "weight": 0.7485818862915039,
+      "source": "note_08.pdf",
+      "target": "note_04.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7368711233139038,
+      "weight": 0.7368711233139038,
+      "source": "note_08.pdf",
+      "target": "note_05.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6875770092010498,
+      "weight": 0.6875770092010498,
+      "source": "note_08.pdf",
+      "target": "note_07.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7289726138114929,
+      "weight": 0.7289726138114929,
+      "source": "note_08.pdf",
+      "target": "note_03.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7141191363334656,
+      "weight": 0.7141191363334656,
+      "source": "note_08.pdf",
+      "target": "note_01.pdf"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "budget",
+      "target": "note_06.pdf"
+    },
+    {
+      "relation": "is_about",
+      "weight": 1.0,
+      "source": "note_09.pdf",
+      "target": "Cognitive Biases and Technology"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_09.pdf",
+      "target": "system1"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_09.pdf",
+      "target": "system2"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_09.pdf",
+      "target": "anchoring effect"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_09.pdf",
+      "target": "heuristics"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_09.pdf",
+      "target": "availability bias"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_09.pdf",
+      "target": "tech adoption"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_09.pdf",
+      "target": "decision-making"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_09.pdf",
+      "target": "fatigue"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_09.pdf",
+      "target": "sleep"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6318578720092773,
+      "weight": 0.6318578720092773,
+      "source": "note_09.pdf",
+      "target": "note_O2.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6487400531768799,
+      "weight": 0.6487400531768799,
+      "source": "note_09.pdf",
+      "target": "note_10.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6629648208618164,
+      "weight": 0.6629648208618164,
+      "source": "note_09.pdf",
+      "target": "note_04.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6597655415534973,
+      "weight": 0.6597655415534973,
+      "source": "note_09.pdf",
+      "target": "note_05.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6337354183197021,
+      "weight": 0.6337354183197021,
+      "source": "note_09.pdf",
+      "target": "note_07.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6447675228118896,
+      "weight": 0.6447675228118896,
+      "source": "note_09.pdf",
+      "target": "note_06.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.670373260974884,
+      "weight": 0.670373260974884,
+      "source": "note_09.pdf",
+      "target": "note_03.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.651426374912262,
+      "weight": 0.651426374912262,
+      "source": "note_09.pdf",
+      "target": "note_01.pdf"
+    },
+    {
+      "relation": "is_about",
+      "weight": 1.0,
+      "source": "note_O2.pdf",
+      "target": "Hybrid Search Strategy"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_O2.pdf",
+      "target": "vector db"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_O2.pdf",
+      "target": "bm25"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_O2.pdf",
+      "target": "rag pipeline"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_O2.pdf",
+      "target": "coche"
+    },
+    {
+      "relation": "shares_keywords",
+      "shared_kw": [
+        "vector db"
+      ],
+      "weight": 2.0,
+      "source": "note_O2.pdf",
+      "target": "note_01.pdf"
+    },
+    {
+      "relation": "semantic_keywords",
+      "matches": "'pipeline' \u2248 'rag pipeline'",
+      "weight": 1.5,
+      "source": "note_O2.pdf",
+      "target": "note_10.pdf"
+    },
+    {
+      "relation": "semantic_keywords",
+      "matches": "'vector' \u2248 'vector db'",
+      "weight": 1.5,
+      "source": "note_O2.pdf",
+      "target": "note_05.pdf"
+    },
+    {
+      "relation": "semantic_keywords",
+      "matches": "'pipeline' \u2248 'rag pipeline'",
+      "weight": 1.5,
+      "source": "note_O2.pdf",
+      "target": "note_03.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7740616202354431,
+      "weight": 0.7740616202354431,
+      "source": "note_O2.pdf",
+      "target": "note_04.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6923016905784607,
+      "weight": 0.6923016905784607,
+      "source": "note_O2.pdf",
+      "target": "note_07.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7327070236206055,
+      "weight": 0.7327070236206055,
+      "source": "note_O2.pdf",
+      "target": "note_06.pdf"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "vector db",
+      "target": "note_01.pdf"
+    },
+    {
+      "relation": "is_about",
+      "weight": 1.0,
+      "source": "note_10.pdf",
+      "target": "Document Retrieval Optimization"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_10.pdf",
+      "target": "document retrieval"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_10.pdf",
+      "target": "search optimization"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_10.pdf",
+      "target": "pipeline"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_10.pdf",
+      "target": "index"
+    },
+    {
+      "relation": "shares_keywords",
+      "shared_kw": [
+        "pipeline"
+      ],
+      "weight": 2.0,
+      "source": "note_10.pdf",
+      "target": "note_03.pdf"
+    },
+    {
+      "relation": "semantic_keywords",
+      "matches": "'optimization' \u2248 'search optimization'",
+      "weight": 1.5,
+      "source": "note_10.pdf",
+      "target": "note_04.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7838746309280396,
+      "weight": 0.7838746309280396,
+      "source": "note_10.pdf",
+      "target": "note_05.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6861796975135803,
+      "weight": 0.6861796975135803,
+      "source": "note_10.pdf",
+      "target": "note_07.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7178879380226135,
+      "weight": 0.7178879380226135,
+      "source": "note_10.pdf",
+      "target": "note_06.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7696672677993774,
+      "weight": 0.7696672677993774,
+      "source": "note_10.pdf",
+      "target": "note_01.pdf"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "pipeline",
+      "target": "note_03.pdf"
+    },
+    {
+      "relation": "is_about",
+      "weight": 1.0,
+      "source": "note_04.pdf",
+      "target": "Document Compression and Optimization"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_04.pdf",
+      "target": "summaries"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_04.pdf",
+      "target": "compression"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_04.pdf",
+      "target": "chunk"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_04.pdf",
+      "target": "optimization"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_04.pdf",
+      "target": "benchmark"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7797220945358276,
+      "weight": 0.7797220945358276,
+      "source": "note_04.pdf",
+      "target": "note_05.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7115523219108582,
+      "weight": 0.7115523219108582,
+      "source": "note_04.pdf",
+      "target": "note_07.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7131451368331909,
+      "weight": 0.7131451368331909,
+      "source": "note_04.pdf",
+      "target": "note_06.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7897712588310242,
+      "weight": 0.7897712588310242,
+      "source": "note_04.pdf",
+      "target": "note_03.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.791729748249054,
+      "weight": 0.791729748249054,
+      "source": "note_04.pdf",
+      "target": "note_01.pdf"
+    },
+    {
+      "relation": "is_about",
+      "weight": 1.0,
+      "source": "note_05.pdf",
+      "target": "Database Services Comparison"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_05.pdf",
+      "target": "chromedb"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_05.pdf",
+      "target": "pinecone"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_05.pdf",
+      "target": "api"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_05.pdf",
+      "target": "multi-user"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_05.pdf",
+      "target": "scheduling"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_05.pdf",
+      "target": "infrastructure"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_05.pdf",
+      "target": "mvp"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_05.pdf",
+      "target": "vector"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_05.pdf",
+      "target": "beta sets"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_05.pdf",
+      "target": "url routing"
+    },
+    {
+      "relation": "semantic_keywords",
+      "matches": "'vector db' \u2248 'vector'",
+      "weight": 1.5,
+      "source": "note_05.pdf",
+      "target": "note_01.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.707679033279419,
+      "weight": 0.707679033279419,
+      "source": "note_05.pdf",
+      "target": "note_07.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7096027731895447,
+      "weight": 0.7096027731895447,
+      "source": "note_05.pdf",
+      "target": "note_06.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7834931015968323,
+      "weight": 0.7834931015968323,
+      "source": "note_05.pdf",
+      "target": "note_03.pdf"
+    },
+    {
+      "relation": "is_about",
+      "weight": 1.0,
+      "source": "note_07.pdf",
+      "target": "Travel Planning"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_07.pdf",
+      "target": "greece"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_07.pdf",
+      "target": "spain"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_07.pdf",
+      "target": "history"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_07.pdf",
+      "target": "museums"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_07.pdf",
+      "target": "beaches"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_07.pdf",
+      "target": "wine"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_07.pdf",
+      "target": "culture"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_07.pdf",
+      "target": "architecture"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7810271978378296,
+      "weight": 0.7810271978378296,
+      "source": "note_07.pdf",
+      "target": "note_06.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6965541243553162,
+      "weight": 0.6965541243553162,
+      "source": "note_07.pdf",
+      "target": "note_03.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6776936650276184,
+      "weight": 0.6776936650276184,
+      "source": "note_07.pdf",
+      "target": "note_01.pdf"
+    },
+    {
+      "relation": "is_about",
+      "weight": 1.0,
+      "source": "note_06.pdf",
+      "target": "Grocery Shopping"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_06.pdf",
+      "target": "food staples"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_06.pdf",
+      "target": "pantry essentials"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.707725465297699,
+      "weight": 0.707725465297699,
+      "source": "note_06.pdf",
+      "target": "note_03.pdf"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.6649133563041687,
+      "weight": 0.6649133563041687,
+      "source": "note_06.pdf",
+      "target": "note_01.pdf"
+    },
+    {
+      "relation": "is_about",
+      "weight": 1.0,
+      "source": "note_03.pdf",
+      "target": "Software Engineering"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_03.pdf",
+      "target": "uml"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_03.pdf",
+      "target": "batch processing"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_03.pdf",
+      "target": "memory"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_03.pdf",
+      "target": "formatters"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_03.pdf",
+      "target": "setup"
+    },
+    {
+      "relation": "content_similar",
+      "similarity": 0.7697776556015015,
+      "weight": 0.7697776556015015,
+      "source": "note_03.pdf",
+      "target": "note_01.pdf"
+    },
+    {
+      "relation": "is_about",
+      "weight": 1.0,
+      "source": "note_01.pdf",
+      "target": "Vector DB Decision"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_01.pdf",
+      "target": "embedding"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_01.pdf",
+      "target": "local solution"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_01.pdf",
+      "target": "performance testing"
+    },
+    {
+      "relation": "has_keyword",
+      "weight": 1.0,
+      "source": "note_01.pdf",
+      "target": "resource allocation"
+    }
+  ]
+}

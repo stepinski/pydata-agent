@@ -1,0 +1,16 @@
+# Conda environments
+environment.yml
+*.lock
+.conda/
+.envs/
+.env/
+
+# Python cache and distribution files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+
+# Virtual Environments
+venv/
+env/

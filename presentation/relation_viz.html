@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 800px;
+                 background-color: #1a1b26;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#e0af68", "font": {"color": "#c0caf5"}, "id": "note_07.pdf", "label": "note_07.pdf", "shape": "dot", "size": 25, "type": "Note"}, {"color": "#e0af68", "font": {"color": "#c0caf5"}, "id": "note_08.pdf", "label": "note_08.pdf", "shape": "dot", "size": 25, "type": "Note"}, {"color": "#e0af68", "font": {"color": "#c0caf5"}, "id": "note_09.pdf", "label": "note_09.pdf", "shape": "dot", "size": 25, "type": "Note"}, {"color": "#e0af68", "font": {"color": "#c0caf5"}, "id": "note_O2.pdf", "label": "note_O2.pdf", "shape": "dot", "size": 25, "type": "Note"}, {"color": "#7aa2f7", "font": {"color": "#c0caf5"}, "id": "note_10.pdf", "label": "Note 10\n(Strategy)", "shape": "dot", "size": 40, "type": "Note"}, {"color": "#e0af68", "font": {"color": "#c0caf5"}, "id": "note_04.pdf", "label": "note_04.pdf", "shape": "dot", "size": 25, "type": "Note"}, {"color": "#e0af68", "font": {"color": "#c0caf5"}, "id": "note_05.pdf", "label": "note_05.pdf", "shape": "dot", "size": 25, "type": "Note"}, {"color": "#e0af68", "font": {"color": "#c0caf5"}, "id": "note_06.pdf", "label": "note_06.pdf", "shape": "dot", "size": 25, "type": "Note"}, {"color": "#bb9af7", "font": {"color": "#c0caf5"}, "id": "note_03.pdf", "label": "Note 03\n(Tech Setup)", "shape": "dot", "size": 40, "type": "Note"}, {"color": "#e0af68", "font": {"color": "#c0caf5"}, "id": "note_01.pdf", "label": "note_01.pdf", "shape": "dot", "size": 25, "type": "Note"}, {"color": "#e0af68", "font": {"color": "#c0caf5"}, "id": "pipeline", "label": "pipeline", "shape": "dot", "size": 25, "type": "Keyword"}]);
+                  edges = new vis.DataSet([{"color": "#565f89", "from": "note_07.pdf", "relation": "content_similar", "similarity": 0.6875770092010498, "to": "note_08.pdf", "width": 0.6875770092010498}, {"color": "#565f89", "from": "note_07.pdf", "relation": "content_similar", "similarity": 0.6337354183197021, "to": "note_09.pdf", "width": 0.6337354183197021}, {"color": "#565f89", "from": "note_07.pdf", "relation": "content_similar", "similarity": 0.6923016905784607, "to": "note_O2.pdf", "width": 0.6923016905784607}, {"color": "#565f89", "from": "note_07.pdf", "relation": "content_similar", "similarity": 0.6861796975135803, "to": "note_10.pdf", "width": 0.6861796975135803}, {"color": "#565f89", "from": "note_07.pdf", "relation": "content_similar", "similarity": 0.7115523219108582, "to": "note_04.pdf", "width": 0.7115523219108582}, {"color": "#565f89", "from": "note_07.pdf", "relation": "content_similar", "similarity": 0.707679033279419, "to": "note_05.pdf", "width": 0.707679033279419}, {"color": "#565f89", "from": "note_07.pdf", "relation": "content_similar", "similarity": 0.7810271978378296, "to": "note_06.pdf", "width": 0.7810271978378296}, {"color": "#565f89", "from": "note_07.pdf", "relation": "content_similar", "similarity": 0.6965541243553162, "to": "note_03.pdf", "width": 0.6965541243553162}, {"color": "#565f89", "from": "note_07.pdf", "relation": "content_similar", "similarity": 0.6776936650276184, "to": "note_01.pdf", "width": 0.6776936650276184}, {"color": "#565f89", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.6545659899711609, "to": "note_08.pdf", "width": 0.6545659899711609}, {"color": "#565f89", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.6318578720092773, "to": "note_O2.pdf", "width": 0.6318578720092773}, {"color": "#565f89", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.6487400531768799, "to": "note_10.pdf", "width": 0.6487400531768799}, {"color": "#565f89", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.6629648208618164, "to": "note_04.pdf", "width": 0.6629648208618164}, {"color": "#565f89", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.6597655415534973, "to": "note_05.pdf", "width": 0.6597655415534973}, {"color": "#565f89", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.6447675228118896, "to": "note_06.pdf", "width": 0.6447675228118896}, {"color": "#565f89", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.670373260974884, "to": "note_03.pdf", "width": 0.670373260974884}, {"color": "#565f89", "from": "note_09.pdf", "relation": "content_similar", "similarity": 0.651426374912262, "to": "note_01.pdf", "width": 0.651426374912262}, {"color": "#565f89", "from": "note_08.pdf", "relation": "shares_keywords", "shared_kw": ["budget"], "to": "note_06.pdf", "width": 2.0}, {"color": "#565f89", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.7097833156585693, "to": "note_O2.pdf", "width": 0.7097833156585693}, {"color": "#565f89", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.7207991480827332, "to": "note_10.pdf", "width": 0.7207991480827332}, {"color": "#565f89", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.7485818862915039, "to": "note_04.pdf", "width": 0.7485818862915039}, {"color": "#565f89", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.7368711233139038, "to": "note_05.pdf", "width": 0.7368711233139038}, {"color": "#565f89", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.7289726138114929, "to": "note_03.pdf", "width": 0.7289726138114929}, {"color": "#565f89", "from": "note_08.pdf", "relation": "content_similar", "similarity": 0.7141191363334656, "to": "note_01.pdf", "width": 0.7141191363334656}, {"color": "#565f89", "from": "note_01.pdf", "relation": "shares_keywords", "shared_kw": ["vector db"], "to": "note_O2.pdf", "width": 2.0}, {"color": "#565f89", "from": "note_01.pdf", "relation": "content_similar", "similarity": 0.7696672677993774, "to": "note_10.pdf", "width": 0.7696672677993774}, {"color": "#565f89", "from": "note_01.pdf", "relation": "content_similar", "similarity": 0.791729748249054, "to": "note_04.pdf", "width": 0.791729748249054}, {"color": "#565f89", "from": "note_01.pdf", "matches": "\u0027vector db\u0027 \u2248 \u0027vector\u0027", "relation": "semantic_keywords", "to": "note_05.pdf", "width": 1.5}, {"color": "#565f89", "from": "note_01.pdf", "relation": "content_similar", "similarity": 0.6649133563041687, "to": "note_06.pdf", "width": 0.6649133563041687}, {"color": "#565f89", "from": "note_01.pdf", "relation": "content_similar", "similarity": 0.7697776556015015, "to": "note_03.pdf", "width": 0.7697776556015015}, {"color": "#565f89", "from": "note_03.pdf", "matches": "\u0027pipeline\u0027 \u2248 \u0027rag pipeline\u0027", "relation": "semantic_keywords", "to": "note_O2.pdf", "width": 1.5}, {"color": "#9ece6a", "dashes": true, "font": {"align": "middle", "color": "#9ece6a", "strokeWidth": 0}, "from": "note_03.pdf", "label": "Semantic Match", "relation": "shares_keywords", "shared_kw": ["pipeline"], "to": "note_10.pdf", "width": 2.0}, {"color": "#565f89", "from": "note_03.pdf", "relation": "has_keyword", "to": "pipeline", "width": 1.0}, {"color": "#565f89", "from": "note_03.pdf", "relation": "content_similar", "similarity": 0.7897712588310242, "to": "note_04.pdf", "width": 0.7897712588310242}, {"color": "#565f89", "from": "note_03.pdf", "relation": "content_similar", "similarity": 0.7834931015968323, "to": "note_05.pdf", "width": 0.7834931015968323}, {"color": "#565f89", "from": "note_03.pdf", "relation": "content_similar", "similarity": 0.707725465297699, "to": "note_06.pdf", "width": 0.707725465297699}, {"color": "#565f89", "from": "note_06.pdf", "relation": "content_similar", "similarity": 0.7327070236206055, "to": "note_O2.pdf", "width": 0.7327070236206055}, {"color": "#565f89", "from": "note_06.pdf", "relation": "content_similar", "similarity": 0.7178879380226135, "to": "note_10.pdf", "width": 0.7178879380226135}, {"color": "#565f89", "from": "note_06.pdf", "relation": "content_similar", "similarity": 0.7131451368331909, "to": "note_04.pdf", "width": 0.7131451368331909}, {"color": "#565f89", "from": "note_06.pdf", "relation": "content_similar", "similarity": 0.7096027731895447, "to": "note_05.pdf", "width": 0.7096027731895447}, {"color": "#565f89", "from": "note_04.pdf", "relation": "content_similar", "similarity": 0.7740616202354431, "to": "note_O2.pdf", "width": 0.7740616202354431}, {"color": "#565f89", "from": "note_04.pdf", "matches": "\u0027optimization\u0027 \u2248 \u0027search optimization\u0027", "relation": "semantic_keywords", "to": "note_10.pdf", "width": 1.5}, {"color": "#565f89", "from": "note_04.pdf", "relation": "content_similar", "similarity": 0.7797220945358276, "to": "note_05.pdf", "width": 0.7797220945358276}, {"color": "#565f89", "from": "note_05.pdf", "matches": "\u0027vector\u0027 \u2248 \u0027vector db\u0027", "relation": "semantic_keywords", "to": "note_O2.pdf", "width": 1.5}, {"color": "#565f89", "from": "note_05.pdf", "relation": "content_similar", "similarity": 0.7838746309280396, "to": "note_10.pdf", "width": 0.7838746309280396}, {"color": "#565f89", "from": "note_O2.pdf", "matches": "\u0027pipeline\u0027 \u2248 \u0027rag pipeline\u0027", "relation": "semantic_keywords", "to": "note_10.pdf", "width": 1.5}, {"color": "#565f89", "from": "note_10.pdf", "relation": "has_keyword", "to": "pipeline", "width": 1.0}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"forceAtlas2Based": {"gravitationalConstant": -100, "springLength": 200, "springConstant": 0.05}, "minVelocity": 0.75, "solver": "forceAtlas2Based"}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
